@@ -1,7 +1,7 @@
 {
 	"name" : "wolfenste/tictactoe",
 	"description" : "A tic-tac-toe program in PHP.",
-	"version" : "v1.0.0-alpha1",
+	"version" : "0.0.1",
 	"type" : "project",
 	"keywords" : ["tictactoe", "PHP"],
 	"readme" : "readme.md",
