@@ -1,6 +1,7 @@
 Rules for playing tictactoe
 ---
 
+* The game is played by (only) two **different** web clients (the players).
 * The game is played on a grid that's 3 squares by 3 squares. 
 * Players take turns putting their marks(X or O) in empty squares.
 * After the first player goes, then the second player should put down his mark, which will be different from the mark of the first player.
@@ -8,4 +9,6 @@ Rules for playing tictactoe
 * The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner. 
 * When all 9 squares are full, the game is over. 
 * If no player has 3 marks in a row, the game ends in a tie. 
+* After the game is over, either player can reset the map and request another round.
+* In the meantime, the score is displayed somewhere on the page.
 
