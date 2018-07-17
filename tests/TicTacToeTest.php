@@ -9,7 +9,7 @@ class TicTacToeTest extends TestCase {
     /**
      * @test
      */
-    public function testStartTheGameWithAnEmptyMapTheCurrentPlayerBeingX () {
+    public function start_the_game_with_an_empty_map_the_current_player_being_x () {
         $map = new Map ();
         $player = new Player ();
 	$game = new Game ($player, $map);
