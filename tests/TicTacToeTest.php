@@ -11,12 +11,12 @@ class TicTacToeTest extends TestCase {
      */
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
         $map = new Map ();
-        $player = new Player ();
-	$game = new Game ($player, $map);
+	$playerX = new Player ();
+	$player0 = new Player ();
+	$game = new Game ($playerX, $player0, $map);
 
-	$this->assertEquals ('X', $game->getCurrentPlayer ());
-	$this->assertEquals ('X', $game->getPlayer ()->getName ());
-	$this->assertTrue ($game->getMap ()->isEmpty ());
+	$this->assertTrue (new Mark ('X')->equals ($game->getCurrentMark ()));
+	$this->assertTrue ($game->isMapEmpty ());
     }
 }
 
