@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use TicTacToe\MapCoordinate;
 use TicTacToe\Mark;
 use TicTacToe\Map;
 use TicTacToe\Player;
@@ -41,11 +42,11 @@ class TicTacToeTest extends TestCase {
 	$game = new Game ($playerX, $playerY, $map);
         
 	$this->assertFalse ($game->isMapEmpty ());
-	$player0->moveToSquare (2, 1);
-	$playerX->moveToSquare (2, 2);
-	$player0->moveToPlayer (3, 1);
+	$player0->putMark (new MapCoordinate (2, 1));
+	$playerX->putMark (new MapCoordinate (2, 2));
+	$player0->putMark (new MapCoordiate (3, 1));
 	$this->assertEquals ($game->getGameStatus (), 'in_progress');
-	$playerX->moveToSquare (2, 3);
+	$playerX->putMark (new MapCoordinate (2, 3));
 	$this->assertTrue ($game->isMapCompleted ());
 	$this->assertEquals ($game->getGameStatus (), 'end');
 	$this->assertEquals ($game->getWhoWon (), '');
@@ -65,12 +66,12 @@ class TicTacToeTest extends TestCase {
         $map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 
-	$playerX->moveToSquare (1, 1);
+	$playerX->putMark (new MapCoordinate (1, 1));
 	$this->assertFalse ($game->isMapEmpty ());
-	$player0->moveToSquare (2, 1);
-	$playerX->moveToSquare (1, 2);
-	$player0->moveToSquare (2, 2);
-	$playerX->moveToSquare (1, 3);
+	$player0->putMark (new MapCoordinate (2, 1));
+	$playerX->putMark (new MapCoordinate (1, 2));
+	$player0->putMark (new MapCoordinate (2, 2));
+	$playerX->putMark (new MapCoordinate (1, 3));
         $this->assertEquals ($game->getWhoWon (), 'playerX');
 	$this->assertEquals ($game->getGameStatus (), 'end');
     }
@@ -89,13 +90,13 @@ class TicTacToeTest extends TestCase {
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
         
-	$playerX->moveToSquare (1, 1);
+	$playerX->putMark (new MapCoordinate (1, 1));
 	$this->assertFalse ($game->isMapEmpty ());
-	$player0->moveToSquare (3, 3);
-	$playerX->moveToSquare (2, 2);
-	$player0->moveToSquare (1, 3);
-	$playerX->moveToSquare (3, 1);
-	$player0->moveToSquare (2, 3);
+	$player0->putMark (new MapCoordinate (3, 3));
+	$playerX->putMark (new MapCoordinate (2, 2));
+	$player0->putMark (new MapCoordinate (1, 3));
+	$playerX->putMark (new MapCoordinate (3, 1));
+	$player0->putMark (new MapCoordinate (2, 3));
 	$this->assertEquals ($game->getWhoWon (), 'player0');
 	$this->assertEquals ($game->getGameStatus (), 'end');
     }
@@ -114,9 +115,9 @@ class TicTacToeTest extends TestCase {
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
-	$player->moveToSquare (1, 2);
+	$player->putMark (new MapCoordinate (1, 2));
 	$this->assertFalse ($game->isMapEmpty ());
-	$player0->moveToSquare (2, 1);
+	$player0->putMark (new MapCoordinate (2, 1));
 	$this->assertFalse ($game->isMapCompleted ());
 	$this->assertEquals ($game->getGameStatus (), 'in_progress');
 	$this->assertEquals ($game->getWhoWon (), '');
