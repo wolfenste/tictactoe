@@ -20,7 +20,7 @@ class TicTacToeTest extends TestCase {
 		'(3, 1)' => '', '(3, 2)' => '', '(3, 3)' => ''
 	);
 	$map = new Map ($marks);
-	$game = new Game ($playerX, $playerY, $map);
+	$game = new Game ($playerX, $player0, $map);
 	
 	$this->assertEquals ($game->getGameStatus (), 'start');
 	$this->assertTrue ($game->isMapEmpty ());
@@ -39,7 +39,7 @@ class TicTacToeTest extends TestCase {
 		'(3, 1)' => '', '(3, 2)' => 'X', '(3, 3)' => '0'
 	);
 	$map = new Map ($marks);
-	$game = new Game ($playerX, $playerY, $map);
+	$game = new Game ($playerX, $player0, $map);
         
 	$this->assertFalse ($game->isMapEmpty ());
 	$player0->putMark (new MapCoordinate (2, 1));
