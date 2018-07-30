@@ -8,6 +8,14 @@ use TicTacToe\Map;
 use TicTacToe\Player;
 use TicTacToe\Game;
 
+function createMarksArray ($arrayOfSimpleMarks) {
+	$arrayOfMarkObjects = array ();
+	foreach ($arrayOfSimpleMarks as $k => $v) {
+		$arrayOfMarkObjects [] = new Mark ($v);
+	}
+	return $arrayOfMarkObjects;
+}
+
 class TicTacToeTest extends TestCase {
     /**
      * @test
@@ -15,11 +23,7 @@ class TicTacToeTest extends TestCase {
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
 	$playerX = new Player (new Mark ('X'));
 	$player0 = new Player (new Mark ('0'));
-	$marks = array (
-		'(1, 1)' => '', '(1, 2)' => '', '(1, 3)' => '',
-		'(2, 1)' => '', '(2, 2)' => '', '(2, 3)' => '',
-		'(3, 1)' => '', '(3, 2)' => '', '(3, 3)' => ''
-	);
+	$marks = createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
@@ -34,11 +38,7 @@ class TicTacToeTest extends TestCase {
     public function the_map_is_completed_no_winner () {
 	$playerX = new Player (new Mark ('X'));
 	$player0 = new Player (new Mark ('0'));
-	$marks = array (
-		'(1, 1)' => 'X', '(1, 2)' => '0', '(1, 3)' => 'X',
-		'(2, 1)' => '', '(2, 2)' => '', '(2, 3)' => '',
-		'(3, 1)' => '', '(3, 2)' => 'X', '(3, 3)' => '0'
-	);
+	$marks = createMarksArray (array ('X', '0', 'X', '', '', '', '', 'X', '0'));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
         
@@ -59,11 +59,7 @@ class TicTacToeTest extends TestCase {
     public function player_x_won_the_game () {
         $playerX = new Player (new Mark ('X'));
 	$player0 = new Player (new Mark ('0'));
-	$marks = array (
-		'(1, 1)' => '', '(1, 2)' => '', '(1, 3)' => '',
-		'(2, 1)' => '', '(2, 2)' => '', '(2, 3)' => '',
-		'(3, 1)' => '', '(3, 2)' => '', '(3, 3)' => ''
-	);
+	$marks = createMarksArray (array ('', '', '', '', '', '', '', '', ''));
         $map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 
@@ -83,11 +79,7 @@ class TicTacToeTest extends TestCase {
     public function player_0_won_the_game () {
 	$playerX = new Player (new Mark ('X'));
 	$player0 = new Player (new Mark ('0'));
-	$marks = array (
-		'(1, 1)' => '', '(1, 2)' => '', '(1, 3)' => '',
-		'(2, 1)' => '', '(2, 2)' => '', '(2, 3)' => '',
-		'(3, 1)' => '', '(3, 2)' => '', '(3, 3)' => ''
-	);
+	$marks = createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
         
@@ -108,11 +100,7 @@ class TicTacToeTest extends TestCase {
     public function no_winners_still_playing_prepare_next_move () {
 	$playerX = new Player (new Mark ('X'));
 	$player0 = new Player (new Mark ('0'));
-	$marks = array (
-		'(1, 1)' => '', '(1, 2)' => '', '(1, 3)' => '',
-		'(2, 1)' => '', '(2, 2)' => '', '(2, 3)' => '',
-		'(3, 1)' => '', '(3, 2)' => '', '(3, 3)' => ''
-	);
+	$marks = createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
