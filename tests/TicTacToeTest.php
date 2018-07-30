@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use TicTacToe\GameStatus;
 use TicTacToe\MapCoordinate;
 use TicTacToe\Mark;
 use TicTacToe\Map;
@@ -22,7 +23,7 @@ class TicTacToeTest extends TestCase {
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
-	$this->assertEquals ($game->getGameStatus (), 'start');
+	$this->assertTrue (new GameStatus ('start')->equals ($game->getGameStatus ()));
 	$this->assertTrue ($game->isMapEmpty ());
 	$this->assertEquals ($game->getWhoWon (), '');
     }
@@ -45,10 +46,10 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 1));
 	$playerX->putMark (new MapCoordinate (2, 2));
 	$player0->putMark (new MapCoordiate (3, 1));
-	$this->assertEquals ($game->getGameStatus (), 'in_progress');
+	$this->assertTrue (new GameStatus ('in_progress')->equals ($game->getGameStatus ()));
 	$playerX->putMark (new MapCoordinate (2, 3));
 	$this->assertTrue ($game->isMapCompleted ());
-	$this->assertEquals ($game->getGameStatus (), 'end');
+	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
 	$this->assertEquals ($game->getWhoWon (), '');
     }
 
@@ -73,7 +74,7 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 2));
 	$playerX->putMark (new MapCoordinate (1, 3));
         $this->assertEquals ($game->getWhoWon (), 'playerX');
-	$this->assertEquals ($game->getGameStatus (), 'end');
+	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
     }
 
     /**
@@ -98,7 +99,7 @@ class TicTacToeTest extends TestCase {
 	$playerX->putMark (new MapCoordinate (3, 1));
 	$player0->putMark (new MapCoordinate (2, 3));
 	$this->assertEquals ($game->getWhoWon (), 'player0');
-	$this->assertEquals ($game->getGameStatus (), 'end');
+	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
     }
 
     /**
@@ -119,7 +120,7 @@ class TicTacToeTest extends TestCase {
 	$this->assertFalse ($game->isMapEmpty ());
 	$player0->putMark (new MapCoordinate (2, 1));
 	$this->assertFalse ($game->isMapCompleted ());
-	$this->assertEquals ($game->getGameStatus (), 'in_progress');
+	$this->assertTrue (new GameStatus ('in_progress')->equals ($game->getGameStatus ()));
 	$this->assertEquals ($game->getWhoWon (), '');
     }
 
