@@ -15,15 +15,15 @@ class TicTacToeTest extends TestCase {
      * @param array $arrayOfSimpleMarks, holds 9 marks, either '', 'X', or '0'
      * @return an array of 9 Mark objects
      */
-    private function createMarksArray ($arrayOfSimpleMarks) {
-        $arrayOfMarkObjects = array ();
-	foreach ($arrayOfSimpleMarks as $k => $v) {
-	    if ($v === 'X') {
-	        $arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_X);
-	    } else if ($v === '0') {
-		$arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_0);
-	    } else if ($v === '') {
-		$arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_NONE);
+    private function createEmptyTableSpec ($overrides = []) {
+	$arrayOfMarkObjects = array ();
+        for ($i = 0; $i < 9; $i++) {
+	    if (array_key_exists ($i, $overrides)) {
+		$arrayOfMarkObjects [$i] = new Mark (
+                    $overrides [$i] == 'X' ? Mark::SYMBOL_X : Mark::SYMBOL_0
+		);
+            } else {
+		$arrayOfMarkObjects [$i] = new Mark (Mark::SYMBOL_NONE);
 	    }
 	}
 	return $arrayOfMarkObjects;
@@ -35,7 +35,7 @@ class TicTacToeTest extends TestCase {
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
 	$playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
+	$marks = $this->createEmptyTableSpec ();
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
@@ -50,7 +50,9 @@ class TicTacToeTest extends TestCase {
     public function the_map_is_completed_no_winner () {
 	$playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$marks = $this->createMarksArray (array ('X', '0', 'X', '', '', '', '', 'X', '0'));
+	$marks = $this->createEmptyTableSpec (array (
+	    0 => 'X', 1 => '0', 2 => 'X', 7 => 'X', 8 => '0'
+	));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
         
@@ -71,7 +73,7 @@ class TicTacToeTest extends TestCase {
     public function player_x_won_the_game () {
         $playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
+	$marks = $this->createEmptyTableSpec ();
         $map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 
@@ -91,7 +93,7 @@ class TicTacToeTest extends TestCase {
     public function player_0_won_the_game () {
 	$playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
+	$marks = $this->createEmptyTableSpec ();
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
         
@@ -112,7 +114,7 @@ class TicTacToeTest extends TestCase {
     public function no_winners_still_playing_prepare_next_move () {
 	$playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
+	$marks = $this->createEmptyTableSpec ();
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
