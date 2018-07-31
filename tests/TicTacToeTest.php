@@ -12,7 +12,8 @@ class TicTacToeTest extends TestCase {
     /**
      * Creates a parameter for Map's constructor
      *
-     * @param array $arrayOfSimpleMarks, holds 9 marks, either '', 'X', or '0'
+     * @param array $overrides, by default is empty. Keys: integers between 0 and 8.
+     * Values: 'X', or '0'
      * @return an array of 9 Mark objects
      */
     private function createEmptyTableSpec ($overrides = []) {
