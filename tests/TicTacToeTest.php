@@ -18,7 +18,13 @@ class TicTacToeTest extends TestCase {
     private function createMarksArray ($arrayOfSimpleMarks) {
         $arrayOfMarkObjects = array ();
 	foreach ($arrayOfSimpleMarks as $k => $v) {
-	    $arrayOfMarkObjects [] = new Mark ($v);
+	    if ($v === 'X') {
+	        $arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_X);
+	    } else if ($v === '0') {
+		$arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_0);
+	    } else if ($v === '') {
+		$arrayOfMarkObjects [] = new Mark (Mark::SYMBOL_NONE);
+	    }
 	}
 	return $arrayOfMarkObjects;
     }
@@ -27,13 +33,13 @@ class TicTacToeTest extends TestCase {
      * @test
      */
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
-	$playerX = new Player (new Mark ('X'));
-	$player0 = new Player (new Mark ('0'));
+	$playerX = new Player (new Mark (Mark::SYMBOL_X));
+	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
-	$this->assertTrue (new GameStatus ('start')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::START))->equals ($game->getGameStatus ()));
 	$this->assertTrue ($game->isMapEmpty ());
 	$this->assertEquals (null, $game->getWhoWon ());
     }
@@ -42,8 +48,8 @@ class TicTacToeTest extends TestCase {
      * @test
      */
     public function the_map_is_completed_no_winner () {
-	$playerX = new Player (new Mark ('X'));
-	$player0 = new Player (new Mark ('0'));
+	$playerX = new Player (new Mark (Mark::SYMBOL_X));
+	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createMarksArray (array ('X', '0', 'X', '', '', '', '', 'X', '0'));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
@@ -52,10 +58,10 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 1));
 	$playerX->putMark (new MapCoordinate (2, 2));
 	$player0->putMark (new MapCoordiate (3, 1));
-	$this->assertTrue (new GameStatus ('in_progress')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::IN_PROGRESS))->equals ($game->getGameStatus ()));
 	$playerX->putMark (new MapCoordinate (2, 3));
 	$this->assertTrue ($game->isMapCompleted ());
-	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
 	$this->assertEquals (null, $game->getWhoWon ());
     }
 
@@ -63,8 +69,8 @@ class TicTacToeTest extends TestCase {
      * @test
      */
     public function player_x_won_the_game () {
-        $playerX = new Player (new Mark ('X'));
-	$player0 = new Player (new Mark ('0'));
+        $playerX = new Player (new Mark (Mark::SYMBOL_X));
+	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
         $map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
@@ -76,15 +82,15 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 2));
 	$playerX->putMark (new MapCoordinate (1, 3));
         $this->assertSame ($playerX, $game->getWhoWon ());
-	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
     }
 
     /**
      * @test
      */
     public function player_0_won_the_game () {
-	$playerX = new Player (new Mark ('X'));
-	$player0 = new Player (new Mark ('0'));
+	$playerX = new Player (new Mark (Mark::SYMBOL_X));
+	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
@@ -97,15 +103,15 @@ class TicTacToeTest extends TestCase {
 	$playerX->putMark (new MapCoordinate (3, 1));
 	$player0->putMark (new MapCoordinate (2, 3));
 	$this->assertSame ($player0, $game->getWhoWon ());
-	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
     }
 
     /**
      * @test
      */
     public function no_winners_still_playing_prepare_next_move () {
-	$playerX = new Player (new Mark ('X'));
-	$player0 = new Player (new Mark ('0'));
+	$playerX = new Player (new Mark (Mark::SYMBOL_X));
+	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createMarksArray (array ('', '', '', '', '', '', '', '', ''));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
@@ -114,7 +120,7 @@ class TicTacToeTest extends TestCase {
 	$this->assertFalse ($game->isMapEmpty ());
 	$player0->putMark (new MapCoordinate (2, 1));
 	$this->assertFalse ($game->isMapCompleted ());
-	$this->assertTrue (new GameStatus ('in_progress')->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::IN_PROGRESS))->equals ($game->getGameStatus ()));
 	$this->assertEquals (null, $game->getWhoWon ());
     }
 
