@@ -29,7 +29,7 @@ class TicTacToeTest extends TestCase {
 	
 	$this->assertTrue (new GameStatus ('start')->equals ($game->getGameStatus ()));
 	$this->assertTrue ($game->isMapEmpty ());
-	$this->assertSame (new Player (new Mark ('')), $game->getWhoWon ());
+	$this->assertEquals (null, $game->getWhoWon ());
     }
 
     /**
@@ -50,7 +50,7 @@ class TicTacToeTest extends TestCase {
 	$playerX->putMark (new MapCoordinate (2, 3));
 	$this->assertTrue ($game->isMapCompleted ());
 	$this->assertTrue (new GameStatus ('end')->equals ($game->getGameStatus ()));
-	$this->assertSame (new Player (new Mark ('')), $game->getWhoWon ());
+	$this->assertEquals (null, $game->getWhoWon ());
     }
 
     /**
@@ -109,7 +109,7 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 1));
 	$this->assertFalse ($game->isMapCompleted ());
 	$this->assertTrue (new GameStatus ('in_progress')->equals ($game->getGameStatus ()));
-	$this->assertSame (new Player (new Mark ('')), $game->getWhoWon ());
+	$this->assertEquals (null, $game->getWhoWon ());
     }
 
 }
