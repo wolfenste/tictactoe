@@ -39,7 +39,7 @@ class TicTacToeTest extends TestCase {
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
 	
-	$this->assertTrue ((new GameStatus (GameStatus::START))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_START))->equals ($game->getGameStatus ()));
 	$this->assertTrue ($game->isMapEmpty ());
 	$this->assertEquals (null, $game->getWhoWon ());
     }
@@ -60,10 +60,10 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 1));
 	$playerX->putMark (new MapCoordinate (2, 2));
 	$player0->putMark (new MapCoordiate (3, 1));
-	$this->assertTrue ((new GameStatus (GameStatus::IN_PROGRESS))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_IN_PROGRESS))->equals ($game->getGameStatus ()));
 	$playerX->putMark (new MapCoordinate (2, 3));
 	$this->assertTrue ($game->isMapCompleted ());
-	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals ($game->getGameStatus ()));
 	$this->assertEquals (null, $game->getWhoWon ());
     }
 
@@ -84,7 +84,7 @@ class TicTacToeTest extends TestCase {
 	$player0->putMark (new MapCoordinate (2, 2));
 	$playerX->putMark (new MapCoordinate (1, 3));
         $this->assertSame ($playerX, $game->getWhoWon ());
-	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals ($game->getGameStatus ()));
     }
 
     /**
@@ -105,7 +105,7 @@ class TicTacToeTest extends TestCase {
 	$playerX->putMark (new MapCoordinate (3, 1));
 	$player0->putMark (new MapCoordinate (2, 3));
 	$this->assertSame ($player0, $game->getWhoWon ());
-	$this->assertTrue ((new GameStatus (GameStatus::END_))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals ($game->getGameStatus ()));
     }
 
     /**
@@ -122,7 +122,7 @@ class TicTacToeTest extends TestCase {
 	$this->assertFalse ($game->isMapEmpty ());
 	$player0->putMark (new MapCoordinate (2, 1));
 	$this->assertFalse ($game->isMapCompleted ());
-	$this->assertTrue ((new GameStatus (GameStatus::IN_PROGRESS))->equals ($game->getGameStatus ()));
+	$this->assertTrue ((new GameStatus (GameStatus::STATUS_IN_PROGRESS))->equals ($game->getGameStatus ()));
 	$this->assertEquals (null, $game->getWhoWon ());
     }
 
