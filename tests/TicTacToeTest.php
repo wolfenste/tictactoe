@@ -12,17 +12,15 @@ class TicTacToeTest extends TestCase {
     /**
      * Creates a parameter for Map's constructor
      *
-     * @param array $overrides, by default is empty. Keys: integers between 0 and 8.
-     * Values: 'X', or '0'
+     * @param array $overrides, by default is empty. Keys: integers between 0 and 8
+     *     Values: Mark objects
      * @return an array of 9 Mark objects
      */
     private function createEmptyTableSpec ($overrides = []) {
 	$arrayOfMarkObjects = array ();
         for ($i = 0; $i < 9; $i++) {
 	    if (array_key_exists ($i, $overrides)) {
-		$arrayOfMarkObjects [$i] = new Mark (
-                    $overrides [$i] == 'X' ? Mark::SYMBOL_X : Mark::SYMBOL_0
-		);
+		$arrayOfMarkObjects [$i] = $overides [$i];
             } else {
 		$arrayOfMarkObjects [$i] = new Mark (Mark::SYMBOL_NONE);
 	    }
@@ -52,7 +50,11 @@ class TicTacToeTest extends TestCase {
 	$playerX = new Player (new Mark (Mark::SYMBOL_X));
 	$player0 = new Player (new Mark (Mark::SYMBOL_0));
 	$marks = $this->createEmptyTableSpec (array (
-	    0 => 'X', 1 => '0', 2 => 'X', 7 => 'X', 8 => '0'
+	    0 => new Mark (Mark::SYMBOL_X),
+	    1 => new Mark (Mark::SYMBOL_0),
+	    2 => new Mark (Mark::SYMBOL_X),
+	    7 => new Mark (Mark::SYMBOL_X),
+	    8 => new Mark (Mark::SYMBOL_0)
 	));
 	$map = new Map ($marks);
 	$game = new Game ($playerX, $player0, $map);
