@@ -20,7 +20,7 @@ class TicTacToeTest extends TestCase {
 	$arrayOfMarkObjects = array ();
         for ($i = 0; $i < 9; $i++) {
 	    if (array_key_exists ($i, $overrides)) {
-		$arrayOfMarkObjects [$i] = $overides [$i];
+		$arrayOfMarkObjects [$i] = $overrides [$i];
             } else {
 		$arrayOfMarkObjects [$i] = new Mark (Mark::SYMBOL_NONE);
 	    }
