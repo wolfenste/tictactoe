@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use TicTacToe\Mark;
 
-class MarkTest extends PHPUnitFramework\TestCase {
+class MarkTest extends PHPUnit\Framework\TestCase {
     /**
      * @test
      */
