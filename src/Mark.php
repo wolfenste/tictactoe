@@ -8,6 +8,11 @@ class Mark {
     const SYMBOL_NONE = '';
 
     /**
+     * @var char
+     */
+    private $symbol_value;
+
+    /**
      * @return char
      */
     public function getValue () {
