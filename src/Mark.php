@@ -13,6 +13,22 @@ class Mark {
     private $symbol_value;
 
     /**
+     * Class constructor
+     * @param char
+     */
+    public function __construct ($value) {
+	try {
+	    if ($value === 'X' || $value === '0' || $value === '') {
+		$this->symbol_value = $value;
+	    } else {
+		throw new \Exception ('Invalid Mark consructor\'s parameter.');
+	    }
+	} catch (\Exception $e) {
+	    echo $e->getMessage ();
+	}
+    }
+
+    /**
      * @return char
      */
     public function getValue () {
