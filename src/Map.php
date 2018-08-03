@@ -23,12 +23,12 @@ class Map {
 		if ($validator) {
 		    $this->marks = $marks;
 		} else {
-		    throw new Exception ('Invalid element in Map constructor\'s parameter');
+		    throw new \Exception ('Invalid element in Map constructor\'s parameter');
 		}
 	    } else {
-		throw new Exception ('Invalid Map constructor\'s parameter');
+		throw new \Exception ('Invalid Map constructor\'s parameter');
 	    }
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 	    echo $e->getMessage ();
 	}
     }	
