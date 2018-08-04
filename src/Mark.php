@@ -18,7 +18,10 @@ class Mark {
      */
     public function __construct ($value) {
 	try {
-	    if ($value === 'X' || $value === '0' || $value === '') {
+	    if ($value === self::SYMBOL_X || 
+	        $value === self::SYMBOL_0 || 
+		$value === self::SYMBOL_NONE) {
+
 		$this->symbol_value = $value;
 	    } else {
 		throw new \Exception ('Invalid Mark consructor\'s parameter.');
