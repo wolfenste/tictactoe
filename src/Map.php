@@ -25,7 +25,7 @@ class Map {
 	}
 
 	foreach ($marks as $key => $val) {
-	    if (get_class ($val) !== 'Mark') {
+	    if (get_class ($val) !== __NAMESPACE__ . '\Mark') {
 		throw new \DomainException (
 		    'The element must be a Mark object.'
 		);
