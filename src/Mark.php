@@ -17,18 +17,15 @@ class Mark {
      * @param char
      */
     public function __construct ($value) {
-	try {
-	    if ($value === self::SYMBOL_X || 
-	        $value === self::SYMBOL_0 || 
-		$value === self::SYMBOL_NONE) {
+	if ($value === self::SYMBOL_X || 
+	    $value === self::SYMBOL_0 || 
+	    $value === self::SYMBOL_NONE) {
 
-		$this->symbol_value = $value;
-	    } else {
-	        throw new \InvalidArgumentException (
-		    "Only these values are allowed: 'X', '0', or ''."
-	        );
-	    }
-	} catch (\InvalidArgumentException $e) {
+	    $this->symbol_value = $value;
+	} else {
+	    throw new \InvalidArgumentException (
+		"Only these values are allowed: 'X', '0', or ''."
+	    );
 	}
     }
 
