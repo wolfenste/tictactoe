@@ -27,12 +27,5 @@ class Mark {
 	    echo $e->getMessage ();
 	}
     }
-
-    /**
-     * @return char
-     */
-    public function getValue () {
-        return $this->symbol_value;
-    }
 }
 
