@@ -25,6 +25,7 @@ class Map {
 		    }
 		}
 	    }
+	} catch (\Exception $e) {
 	}
 	$this->marks = $marks;
     }
