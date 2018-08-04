@@ -8,7 +8,7 @@ class MapTest extends PHPUnit\Framework\TestCase {
     /**
      * @test
      */
-    public function map_construction () {
+    public function map_is_constructed_with_symbol_none_mark_objects () {
 	$marks = array (
 	    new Mark (Mark::SYMBOL_NONE),
 	    new Mark (Mark::SYMBOL_NONE),
@@ -21,7 +21,9 @@ class MapTest extends PHPUnit\Framework\TestCase {
 	    new Mark (Mark::SYMBOL_NONE)
         );
 	$map = new Map ($marks);
-	$this->assertTrue (!empty ($map->getMarks ()));
+	foreach ($map->getMarks () as $key => $val) {
+	    $this->assertTrue ((new Mark (Mark::SYMBOL_NONE))->equal ($val));
+	}
     }
 }
 
