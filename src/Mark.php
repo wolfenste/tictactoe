@@ -34,11 +34,10 @@ class Mark {
      * @return bool, true if the given object is equal to $this
      */
     public function equal (Mark $object) {
-	if (get_class ($object) === 'TicTacToe\Mark' && $this->symbol_value === $object->symbol_value) {
+	if (get_class ($object) === self::class && $this->symbol_value === $object->symbol_value) {
 	    return true;
-	} else {
-	    return false;
 	}
+	return false;
     }
 }
 
