@@ -24,7 +24,6 @@ class Mark {
 		throw new \Exception ('Invalid Mark consructor\'s parameter.');
 	    }
 	} catch (\Exception $e) {
-	    echo $e->getMessage ();
 	}
     }
 
