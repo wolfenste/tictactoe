@@ -13,25 +13,21 @@ class Map {
      */
     public function __construct ($marks) {
 	try {
-	    if (is_array ($marks) && count ($marks) == 9) {
-		$validator = true;
+	    if (!is_array ($marks)) {
+                throw new \Exception ('Map constructor\'s parameter is not array.');
+	    } else if (count ($marks) != 9) {
+		    throw new \Exception ('Map constructor\'s parameter have not the expected length 9.');
+	    } else {
 		foreach ($marks as $key => $val) {
-		    if (get_class ($val) != 'Mark') {
-			$validator = false;
+		    if (get_class ($val) !== 'Mark') {
+			throw new \Exception ('Invalid element in Map constructor\'s parameter.');
+			break;
 		    }
 		}
-		if ($validator) {
-		    $this->marks = $marks;
-		} else {
-		    throw new \Exception ('Invalid element in Map constructor\'s parameter');
-		}
-	    } else {
-		throw new \Exception ('Invalid Map constructor\'s parameter');
 	    }
-	} catch (\Exception $e) {
-	    echo $e->getMessage ();
 	}
-    }	
+	$this->marks = $marks;
+    }
 
     /**
      * @return array
