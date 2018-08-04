@@ -24,9 +24,11 @@ class Mark {
 
 		$this->symbol_value = $value;
 	    } else {
-		throw new \Exception ('Invalid Mark consructor\'s parameter.');
+	        throw new \InvalidArgumentException (
+		    "Only these values are allowed: 'X', '0', or ''."
+	        );
 	    }
-	} catch (\Exception $e) {
+	} catch (\InvalidArgumentException $e) {
 	}
     }
 

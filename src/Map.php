@@ -14,18 +14,26 @@ class Map {
     public function __construct ($marks) {
 	try {
 	    if (!is_array ($marks)) {
-                throw new \Exception ('Map constructor\'s parameter is not array.');
+		throw new \InvalidArgumentException (
+		    'Only array is allowed as parameter.'
+	        );
 	    } else if (count ($marks) != 9) {
-		    throw new \Exception ('Map constructor\'s parameter have not the expected length 9.');
+		throw new \OutOfRangeException (
+		    'The parameter have not the expected length, 9.'
+	        );
 	    } else {
 		foreach ($marks as $key => $val) {
 		    if (get_class ($val) !== 'Mark') {
-			throw new \Exception ('Invalid element in Map constructor\'s parameter.');
+			throw new \DomainException (
+			    'The element must be a Mark object.'
+		        );
 			break;
 		    }
 		}
 	    }
-	} catch (\Exception $e) {
+	} catch (\InvalidArgumentException $e) {
+	} catch (\OutOfRangeException $e) {
+	} catch (\DomainException $e) {
 	}
 	$this->marks = $marks;
     }
