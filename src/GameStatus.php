@@ -18,5 +18,11 @@ class GameStatus {
      * @const the game is finished
      */
     const STATUS_END = 'status_end';
+
+    /**
+     * @var string
+     */
+    private $status;
+
 }
 
