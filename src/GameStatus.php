@@ -23,6 +23,22 @@ class GameStatus {
      * @var string
      */
     private $status;
-
+    
+    /**
+     * Class constructor
+     * @param string
+     */
+    public function __construct ($value) {
+	if ($value === self::STATUS_START ||
+	    $value === self::STATUS_IN_PROGRESS ||
+	    $value === self::STATUS_END) {
+	    
+	    $this->status = $value;
+	} else {
+	    throw new \InvalidArgumentException (
+		'Only the following strings are allowed: "status_start", "status_in_progress", and "status_end".'
+	    );
+	}
+    }
 }
 
