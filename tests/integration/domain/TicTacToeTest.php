@@ -1,5 +1,7 @@
 <?php
 
+namespace TicTacToeTestsIntegration;
+
 use PHPUnit\Framework\TestCase;
 use TicTacToe\GameStatus;
 use TicTacToe\MapCoordinate;
@@ -16,7 +18,7 @@ class TicTacToeTest extends TestCase {
      *     Values: Mark objects
      * @return an array of 9 Mark objects
      */
-    private function createEmptyTableSpec ($overrides = []) {
+    public function createEmptyTableSpec ($overrides = []) {
 	$arrayOfMarkObjects = array ();
         for ($i = 0; $i < 9; $i++) {
 	    if (array_key_exists ($i, $overrides)) {
