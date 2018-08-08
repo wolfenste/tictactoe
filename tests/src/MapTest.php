@@ -3,7 +3,6 @@
 use TicTacToeTests\BaseClassTest;
 use TicTacToe\Map;
 use TicTacToe\Mark;
-use TicTacToeTestsIntegration\TicTacToeTest;
 
 class MapTest extends BaseClassTest {
     /**
