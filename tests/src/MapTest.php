@@ -15,5 +15,14 @@ class MapTest extends BaseClassTest {
 	    $this->assertTrue ((new Mark (Mark::SYMBOL_NONE))->equal ($val));
 	}
     }
+
+    /**
+     * @test
+     */
+    public function the_map_should_be_empty () {
+	$map = new Map ($this->createEmptyTableSpec ();
+
+	$this->assertTrue ($map->isEmpty ());
+    }
 }
 
