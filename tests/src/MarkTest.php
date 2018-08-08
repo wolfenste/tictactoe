@@ -1,9 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use TicTacToeTests\BaseClassTest;
 use TicTacToe\Mark;
 
-class MarkTest extends PHPUnit\Framework\TestCase {
+class MarkTest extends BaseClassTest {
     /**
      * @test
      */

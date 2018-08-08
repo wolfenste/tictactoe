@@ -30,7 +30,7 @@
 	},
 	"autoload-dev" : {
 		"psr-4" : {
-			"TicTacToe\\Tests\\" : "tests/",
+			"TicTacToeTests\\" : "tests/src/",
 			"TicTacToeTestsIntegration\\" : "tests/integration/domain/"
 		}
 	}

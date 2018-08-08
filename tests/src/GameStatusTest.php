@@ -1,9 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use TicTacToeTests\BaseClassTest;
 use TicTacToe\GameStatus;
 
-class GameStatusTest extends TestCase {
+class GameStatusTest extends BaseClassTest {
     /**
      * @test
      */
