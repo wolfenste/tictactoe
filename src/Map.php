@@ -41,5 +41,18 @@ class Map {
     public function getMarks () {
 	return $this->marks;
     }
+
+    /**
+     * @return boolean, true if the map is empty
+     */
+    public function isEmpty () {
+	foreach ($this->marks as $key => $val) {
+	    if (!((new Mark (Mark::SYMBOL_NONE))->equal ($val))) {
+	        return false;
+	    }
+	}
+
+	return true;
+    }
 }
 
