@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types = 1);
 namespace TicTacToe;
 
 class Map {
@@ -11,12 +12,7 @@ class Map {
     /*
      * @param $marks, array containing 9 Mark objects
      */
-    public function __construct ($marks) {
-	if (!is_array ($marks)) {
-	    throw new \InvalidArgumentException (
-	        'Only array type is allowed as parameter.'
-	    );
-	}
+    public function __construct (array $marks) {
 
 	if (count ($marks) != 9) {
 	    throw new \OutOfRangeException (
@@ -38,14 +34,14 @@ class Map {
     /**
      * @return array
      */
-    public function getMarks () {
+    public function getMarks () : array {
 	return $this->marks;
     }
 
     /**
      * @return boolean, true if the map is empty
      */
-    public function isEmpty () {
+    public function isEmpty () : bool {
 	foreach ($this->marks as $key => $val) {
 	    if (!((new Mark (Mark::SYMBOL_NONE))->equal ($val))) {
 	        return false;

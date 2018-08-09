@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types = 1);
 namespace TicTacToe;
 
 class Mark {
@@ -8,15 +9,15 @@ class Mark {
     const SYMBOL_NONE = '';
 
     /**
-     * @var char
+     * @var string
      */
     private $symbol_value;
 
     /**
      * Class constructor
-     * @param char
+     * @param string
      */
-    public function __construct ($value) {
+    public function __construct (string $value) {
 	if ($value === self::SYMBOL_X || 
 	    $value === self::SYMBOL_0 || 
 	    $value === self::SYMBOL_NONE) {
@@ -33,7 +34,7 @@ class Mark {
      * @param Mark object
      * @return bool, true if the given object is equal to $this
      */
-    public function equal (Mark $object) {
+    public function equal (Mark $object) : bool {
 	if (get_class ($object) === self::class && $this->symbol_value === $object->symbol_value) {
 	    return true;
 	}

@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types = 1);
 namespace TicTacToe;
 
 class Player {
@@ -26,7 +27,7 @@ class Player {
     /**
      * @return Mark object
      */
-    public function getPlayerName () {
+    public function getPlayerName () : Mark {
 	return $this->playerName;
     }
 }

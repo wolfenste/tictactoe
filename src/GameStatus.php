@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types = 1);
 namespace TicTacToe;
 
 class GameStatus {
@@ -28,7 +29,7 @@ class GameStatus {
      * Class constructor
      * @param string
      */
-    public function __construct ($value) {
+    public function __construct (string $value) {
 	if ($value === self::STATUS_START ||
 	    $value === self::STATUS_IN_PROGRESS ||
 	    $value === self::STATUS_END) {
@@ -45,7 +46,7 @@ class GameStatus {
      * @param GameStatus object
      * @return boolean, true if the parameter is equal with the current object
      */
-    public function equals (GameStatus $object) {
+    public function equals (GameStatus $object) : bool {
 	if (is_object ($object) &&
 	    get_class ($object) === self::class &&
 	    $this->status === $object->status) {
