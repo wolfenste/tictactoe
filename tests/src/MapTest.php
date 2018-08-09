@@ -24,5 +24,15 @@ class MapTest extends BaseClassTest {
 
 	$this->assertTrue ($map->isEmpty ());
     }
+
+    /**
+     * @test
+     * @expectedException OutOfRangeException
+     */
+    public function map_tries_to_be_constructed_with_a_longer_parameter () {
+	$marks = $this->createEmptyTableSpec ();
+	$marks [] = new Mark (Mark::SYMBOL_NONE);
+	$map = new Map ($marks);
+    }
 }
 
