@@ -22,4 +22,13 @@ class GameStatusTest extends BaseClassTest {
 	$this->expectException (InvalidArgumentException::class);
 	$gameStatus = new GameStatus ('unexpected_value');
     }
+
+    /**
+     * @test
+     */
+    public function equals_method_receives_non_equal_parameter () {
+	$this->assertFalse ((new GameStatus (GameStatus::STATUS_START))->equals (
+	    new GameStatus (GameStatus::STATUS_END))
+        );
+    }
 }
