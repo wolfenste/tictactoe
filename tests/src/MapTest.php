@@ -34,5 +34,15 @@ class MapTest extends BaseClassTest {
 	$marks [] = new Mark (Mark::SYMBOL_NONE);
 	$map = new Map ($marks);
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     */
+    public function map_tries_to_be_constructed_with_an_unexpected_in_array_object () {
+	$marks = $this->createEmptyTableSpec ();
+	$marks [7] = $this;
+	$map = new Map ($marks);
+    }
 }
 
