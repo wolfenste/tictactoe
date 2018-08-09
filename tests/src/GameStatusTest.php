@@ -13,4 +13,13 @@ class GameStatusTest extends BaseClassTest {
 	    (new GameStatus (GameStatus::STATUS_START))->equals ($gameStatus)
         );
     }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function game_status_is_constructed_with_unexpected_value () {
+	$this->expectException (InvalidArgumentException::class);
+	$gameStatus = new GameStatus ('unexpected_value');
+    }
 }
