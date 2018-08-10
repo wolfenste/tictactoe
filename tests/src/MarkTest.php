@@ -11,4 +11,12 @@ class MarkTest extends BaseClassTest {
 	$mark = new Mark (Mark::SYMBOL_NONE);
 	$this->assertTrue ((new Mark (Mark::SYMBOL_NONE))->equal ($mark));
     }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function mark_is_constructed_with_an_unexpected_value () {
+        $mark = new Mark ('a');
+    }
 }
