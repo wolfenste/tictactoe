@@ -26,9 +26,17 @@ class Game {
      * @param $map Map object
      */
     public function __construct (Player $playerX, Player $player0, Map $map) {
-	$this->playerX = $playerX;
-	$this->player0 = $player0;
-	$this->map = $map;
+        if (!((new Mark (Mark::SYMBOL_X))->equal ($playerX->getPlayerName ()))) {
+            throw new \InvalidArgumentException ('The first argument must be Player X.');
+        }
+
+        if (!((new Mark (Mark::SYMBOL_0))->equal ($player0->getPlayerName ()))) {
+            throw new \InvalidArgumentException ('The second argument must be Player 0.');
+        }
+
+	    $this->playerX = $playerX;
+	    $this->player0 = $player0;
+	    $this->map = $map;
     }
 }
 

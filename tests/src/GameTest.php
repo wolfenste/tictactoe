@@ -25,7 +25,7 @@ class GameTest extends BaseClassTest {
      */
     public function game_is_constructed_with_an_invalid_player () {
         $playerX = new Player (new Mark (Mark::SYMBOL_X));
-        $player0 = new Player (new Mark (Mark::SYMBOL_0));
+        $player0 = new Player (new Mark (Mark::SYMBOL_X));
         $map = new Map ($this->createEmptyTableSpec ());
         $game = new Game ($playerX, $player0, $map);
     }
