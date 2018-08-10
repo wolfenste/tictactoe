@@ -24,7 +24,7 @@ class MapCoordinate {
      */
     public function __construct (int $x, int $y) {
         if ($x < self::ONE || $x > self::THREE || $y < self::ONE || $y > self::THREE) {
-            throw \InvalidArgumentException ('Both arguments must be in interval [1, 3]');
+            throw new \RangeException ('Both arguments must be in interval [1, 3]');
         }
 
         $this->coordinate_x = $x;

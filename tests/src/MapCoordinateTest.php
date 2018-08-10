@@ -14,5 +14,13 @@ class MapCoordinateTest extends BaseClassTest {
             get_class ($mapCoordinate) === MapCoordinate::class
         );
     }
+
+    /**
+     * @test
+     * @expectedException RangeException
+     */
+    public function map_coordinate_is_constructed_with_invalid_first_argument () {
+        $mapCoordinate = new MapCoordinate (-1, 3);
+    }
 }
 
