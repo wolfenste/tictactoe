@@ -38,5 +38,12 @@ class Game {
 	    $this->player0 = $player0;
 	    $this->map = $map;
     }
+
+    /**
+     * @return boolean, true if the map is empty
+     */
+    private function isMapEmpty () : bool {
+        return $this->map->isEmpty ();
+    }
 }
 
