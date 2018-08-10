@@ -21,7 +21,7 @@ class Map {
 	}
 
 	foreach ($marks as $key => $val) {
-	    if (get_class ($val) !== Mark::class) {
+	    if (!is_object ($val) || get_class ($val) !== Mark::class) {
 		throw new \DomainException (
 		    'The element must be a Mark object.'
 		);
