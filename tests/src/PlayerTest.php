@@ -10,9 +10,9 @@ class PlayerTest extends BaseClassTest {
 	$this->assertTrue ((new Mark (Mark::SYMBOL_X))->equal ($playerX->getPlayerName ()));
     }
 
-    /*
+    /**
      * @test
-     * @exceptionExpected InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
     public function the_player_should_not_be_constructed_with_symbol_none () {
         $playerX = new Player (new Mark (Mark::SYMBOL_NONE));

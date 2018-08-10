@@ -15,13 +15,13 @@ class Player {
      * @param $mark, Mark object
      */
     public function __construct (Mark $mark) {
-	if (get_class ($mark) !== Mark::class) {
-	    throw new \InvalidArgumentException (
-	        'The argument must be a Mark object.'
-	    );
-	}
+        if ((new Mark (Mark::SYMBOL_X))->equal ($mark) ||
+            (new Mark (Mark::SYMBOL_0))->equal ($mark)) {
 
-	$this->playerName = $mark;
+            $this->playerName = $mark;
+        } else {
+            throw new \InvalidArgumentException ('Player can be only X or 0.');
+        }
     }
 
     /**
