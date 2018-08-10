@@ -11,12 +11,13 @@ class GameTest extends BaseClassTest {
      * @test
      */
     public function game_is_constructed_with_an_empty_map () {
-	$playerX = new Player (new Mark (Mark::SYMBOL_X));
-	$player0 = new Player (new Mark (Mark::SYMBOL_0));
-	$map = new Map ($this->createEmptyTableSpec ());
+	    $playerX = new Player (new Mark (Mark::SYMBOL_X));
+	    $player0 = new Player (new Mark (Mark::SYMBOL_0));
+	    $map = new Map ($this->createEmptyTableSpec ());
         $game = new Game ($playerX, $player0, $map);
 
-	$this->assertTrue (is_object ($game) && (get_class ($game) === Game::class));
+        $this->assertTrue (is_object ($game) && (get_class ($game) === Game::class));
+        $this->assertTrue ($game->isMapEmpty ());
     }
 
     /**
