@@ -14,13 +14,10 @@ class GameTest extends BaseClassTest {
 	    $playerX = new Player (new Mark (Mark::SYMBOL_X));
 	    $player0 = new Player (new Mark (Mark::SYMBOL_0));
         $map = new Map ($this->createEmptyTableSpec ());
-
-        $method = new ReflectionMethod (Game::class, 'isMapEmpty');
-        $method->setAccessible (true);
         $game = new Game ($playerX, $player0, $map);
 
         $this->assertTrue (is_object ($game) && (get_class ($game) === Game::class));
-        $method->invoke ($game);
+        $this->assertTrue ($game->isMapEmpty ());
     }
 
     /**

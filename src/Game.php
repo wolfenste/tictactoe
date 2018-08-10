@@ -42,7 +42,7 @@ class Game {
     /**
      * @return boolean, true if the map is empty
      */
-    private function isMapEmpty () : bool {
+    public function isMapEmpty () : bool {
         return $this->map->isEmpty ();
     }
 }
