@@ -62,5 +62,13 @@ class MapTest extends BaseClassTest {
         $map = new Map ($this->createEmptyTableSpec ());
         $this->assertTrue ($map->isMapAvailable (5));
     }
+
+    /**
+     * @expectedException RangeException
+     */
+    public function is_map_available_method_receives_unexpected_parameter () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $map->isMapAvailable (11);
+    }
 }
 
