@@ -50,5 +50,21 @@ class Map {
 
 	return true;
     }
+
+    /**
+     * @param integer between 1 and 9
+     * @return boolean
+     */
+    public function isMapAvailable (int $position) : bool {
+        if ($position < 1 || $position > 9) {
+            throw new \RangeException ('The argument must be into interval [1, 9]');
+        }
+
+        if ((new Mark (Mark::SYMBOL_NONE))->equal ($this->marks [$position - 1])) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
