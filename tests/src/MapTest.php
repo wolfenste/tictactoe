@@ -58,9 +58,9 @@ class MapTest extends BaseClassTest {
     /**
      * @test
      */
-    public function cell_is_available_at_position_5 () {
+    public function map_is_available_at_position_5 () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $this->assertTrue ($map->isCellAvailable (5));
+        $this->assertTrue ($map->isMapAvailable (5));
     }
 }
 
