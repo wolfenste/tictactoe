@@ -15,9 +15,9 @@ class TicTacToeTest extends BaseClassTest {
      * @test
      */
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
-        $strategyX = new StrategyPlayer ();
-        $strategy0 = new StrategyAI ();
-	    $map = new Map ($this->createEmptyTableSpec ());
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategyX = new StrategyPlayer ($map);
+        $strategy0 = new StrategyAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_START))->equals 
@@ -30,8 +30,6 @@ class TicTacToeTest extends BaseClassTest {
      * @test
      */
     public function the_map_is_completed_no_winner () {
-        $strategyX = new StrategyPlayer ();
-        $strategy0 = new StrategyAI ();
 	    $marks = $this->createEmptyTableSpec (array (
 	        0 => new Mark (Mark::SYMBOL_X),
 	        1 => new Mark (Mark::SYMBOL_0),
@@ -43,7 +41,9 @@ class TicTacToeTest extends BaseClassTest {
 	        7 => new Mark (Mark::SYMBOL_X),
 	        8 => new Mark (Mark::SYMBOL_0)
 	    ));
-	    $map = new Map ($marks);
+        $map = new Map ($marks);
+        $strategyX = new StrategyPlayer ($map);
+        $strategy0 = new StrategyAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
         
 	    $this->assertFalse ($game->isMapEmpty ());
@@ -57,8 +57,6 @@ class TicTacToeTest extends BaseClassTest {
      * @test
      */
     public function player_x_won_the_game () {
-        $strategyX = new StrategyPlayer ();
-        $strategy0 = new StrategyAI ();
         $marks = $this->createEmptyTableSpec ( array (
             0 => new Mark (Mark::SYMBOL_X),
             1 => new Mark (Mark::SYMBOL_X),
@@ -66,6 +64,8 @@ class TicTacToeTest extends BaseClassTest {
             4 => new Mark (Mark::SYMBOL_0),
         ));
         $map = new Map ($marks);
+        $strategyX = new StrategyPlayer ($map);
+        $strategy0 = new StrategyAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 
 	    $this->assertFalse ($game->isMapEmpty ());
@@ -79,8 +79,6 @@ class TicTacToeTest extends BaseClassTest {
      * @test
      */
     public function player_0_won_the_game () {
-        $strategyX = new StrategyPlayer ();
-        $strategy0 = new StrategyAI ();
         $marks = $this->createEmptyTableSpec (array (
             0 => new Mark (Mark::SYMBOL_X),
             2 => new Mark (Mark::SYMBOL_0),
@@ -88,7 +86,9 @@ class TicTacToeTest extends BaseClassTest {
             6 => new Mark (Mark::SYMBOL_X),
             8 => new Mark (Mark::SYMBOL_0),
         ));
-	    $map = new Map ($marks);
+        $map = new Map ($marks);
+        $strategyX = new StrategyPlayer ($map);
+        $strategy0 = new StrategyAI ($map);
 	    $game = new Game ($playerX, $player0, $map);
         
 	    $this->assertFalse ($game->isMapEmpty ());
@@ -102,9 +102,9 @@ class TicTacToeTest extends BaseClassTest {
      * @test
      */
     public function no_winners_still_playing_prepare_next_move () {
-        $strategyX = new StrategyPlayer ();
-        $strategy0 = new StrategyAI ();
-	    $map = new Map ($this->createEmptyTableSpec ());
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategyX = new StrategyPlayer ($map);
+        $strategy0 = new StrategyAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
 	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (1, 2));
