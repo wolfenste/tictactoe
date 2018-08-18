@@ -1,7 +1,7 @@
 <?php
 
 use TicTacToeTests\BaseClassTest;
-use TicTacToe\StrategyPlayer;
+use TicTacToe\NextMoveProviderPlayer;
 use TicTacToe\StrategyAI;
 use TicTacToe\GameStatus;
 use TicTacToe\MapCoordinate;
