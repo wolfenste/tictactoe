@@ -69,7 +69,7 @@ class TicTacToeTest extends BaseClassTest {
 	    $game = new Game ($strategyX, $strategy0, $map);
 
 	    $this->assertFalse ($game->isMapEmpty ());
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (1, 3));
+	    $game->currentPlayerPutsMark (new MapCoordinate (1, 3));
         $this->assertSame ($game->getPlayerX (), $game->getWhoWon ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals 
             ($game->getGameStatus ()));
@@ -92,7 +92,7 @@ class TicTacToeTest extends BaseClassTest {
 	    $game = new Game ($playerX, $player0, $map);
         
 	    $this->assertFalse ($game->isMapEmpty ());
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (2, 3));
+	    $game->currentPlayerPutsMark (new MapCoordinate (2, 3));
 	    $this->assertSame ($game->getPlayer0 (), $game->getWhoWon ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals 
             ($game->getGameStatus ()));
@@ -107,7 +107,7 @@ class TicTacToeTest extends BaseClassTest {
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (1, 2));
+	    $game->currentPlayerPutsMark (new MapCoordinate (1, 2));
 	    $this->assertFalse ($game->isMapEmpty ());
 	    $this->assertFalse ($game->isMapCompleted ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_IN_PROGRESS))->equals 
