@@ -2,7 +2,7 @@
 
 use TicTacToeTests\BaseClassTest;
 use TicTacToe\NextMoveProviderPlayer;
-use TicTacToe\StrategyAI;
+use TicTacToe\NextMoveProviderAI;
 use TicTacToe\GameStatus;
 use TicTacToe\MapCoordinate;
 use TicTacToe\Mark;
