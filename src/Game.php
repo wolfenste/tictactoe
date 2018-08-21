@@ -21,22 +21,24 @@ class Game {
 
     /***
      * Class constructor
-     * @param $playerX Player object
-     * @param $player0 Player object
+     * @param $strategyPlayer NextMoveProviderPlayer object
+     * @param $strategyAI NextMoveProviderAI object
      * @param $map Map object
      */
-    public function __construct (Player $playerX, Player $player0, Map $map) {
-        if (!((new Mark (Mark::SYMBOL_X))->equal ($playerX->getPlayerName ()))) {
-            throw new \InvalidArgumentException ('The first argument must be Player X.');
+    public function __construct (
+        NextMoveProviderPlayer $strategyPlayer,
+        NextMoveProviderAI $strategyAI,
+        Map $map) {
+
+        if ($strategyPlayer->getSymbol ()->equal (new Mark (Mark::SYMBOL_X))) {
+            $this->playerX = new Player (new Mark (Mark::SYMBOL_X), $strategyPlayer, $this);
+            $this->player0 = new Player (new Mark (Mark::SYMBOL_0), $strategyAI, $this);
+        } else {
+            $this->playerX = new Player (new Mark (Mark::SYMBOL_X), $strategyAI, $this);
+            $this->player0 = new Player (new Mark (Mark::SYMBOL_0), $strategyPlayer, $this);
         }
 
-        if (!((new Mark (Mark::SYMBOL_0))->equal ($player0->getPlayerName ()))) {
-            throw new \InvalidArgumentException ('The second argument must be Player 0.');
-        }
-
-	    $this->playerX = $playerX;
-	    $this->player0 = $player0;
-	    $this->map = $map;
+        $this->map = $map;
     }
 
     /**
