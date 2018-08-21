@@ -3,6 +3,6 @@
 declare (strict_types = 1);
 namespace TicTacToe;
 
-class NextMoveProviderAI implements Strategy {
+class NextMoveProviderAI implements NextMoveProvider {
 }
 
