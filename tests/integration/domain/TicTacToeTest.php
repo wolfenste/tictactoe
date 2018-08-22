@@ -16,7 +16,8 @@ class TicTacToeTest extends BaseClassTest {
      */
     public function start_the_game_with_an_empty_map_the_current_player_being_x () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $strategyX = new NextMoveProviderPlayer ($map);
+        $option = null;
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
@@ -38,14 +39,15 @@ class TicTacToeTest extends BaseClassTest {
             4 => new Mark (Mark::SYMBOL_X),
             5 => new Mark (Mark::SYMBOL_0),
             6 => new Mark (Mark::SYMBOL_X),
-	        7 => new Mark (Mark::SYMBOL_X),
 	        8 => new Mark (Mark::SYMBOL_0)
 	    ));
         $map = new Map ($marks);
-        $strategyX = new NextMoveProviderPlayer ($map);
+        $option = new MapCoordinate (3, 2);
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
-        
+
+        $game->getCurrentPlayer ()->putMark (); // X is the current player
 	    $this->assertFalse ($game->isMapEmpty ());
 	    $this->assertTrue ($game->isMapCompleted ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals 
@@ -64,12 +66,13 @@ class TicTacToeTest extends BaseClassTest {
             4 => new Mark (Mark::SYMBOL_0),
         ));
         $map = new Map ($marks);
-        $strategyX = new NextMoveProviderPlayer ($map);
+        $option = new MapCoordinate (1, 3);
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 
 	    $this->assertFalse ($game->isMapEmpty ());
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (1, 3));
+	    $game->getCurrentPlayer ()->putMark (); // X is the current player
         $this->assertSame ($game->getPlayerX (), $game->getWhoWon ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals 
             ($game->getGameStatus ()));
@@ -87,12 +90,13 @@ class TicTacToeTest extends BaseClassTest {
             8 => new Mark (Mark::SYMBOL_0),
         ));
         $map = new Map ($marks);
-        $strategyX = new NextMoveProviderPlayer ($map);
+        $option = null;
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
         
 	    $this->assertFalse ($game->isMapEmpty ());
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (2, 3));
+	    $game->getCurrentPlayer ()->putMark (); // player0 putMark at (2, 3)
 	    $this->assertSame ($game->getPlayer0 (), $game->getWhoWon ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_END))->equals 
             ($game->getGameStatus ()));
@@ -103,11 +107,12 @@ class TicTacToeTest extends BaseClassTest {
      */
     public function no_winners_still_playing_prepare_next_move () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $strategyX = new NextMoveProviderPlayer ($map);
+        $option = new MapCoordinate (1, 2);
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
-	    $game->getCurrentPlayer ()->putMark (new MapCoordinate (1, 2));
+	    $game->getCurrentPlayer ()->putMark (); // X is the current player
 	    $this->assertFalse ($game->isMapEmpty ());
 	    $this->assertFalse ($game->isMapCompleted ());
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_IN_PROGRESS))->equals 
