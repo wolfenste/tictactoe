@@ -41,6 +41,6 @@ class Player {
      * @return Mark object
      */
     public function getPlayerName () : Mark {
-	return $this->playerName;
+	    return $this->playerName;
     }
 }
