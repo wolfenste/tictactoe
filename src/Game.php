@@ -41,5 +41,19 @@ class Game {
     public function isMapEmpty () : bool {
         return $this->map->isEmpty ();
     }
+
+    /**
+     * @return Player object
+     */
+    public function getPlayerX () : Player {
+        return $this->playerX;
+    }
+
+    /**
+     * @return Player object
+     */
+    public function getPLayer0 () : PLayer {
+        return $this->player0;
+    }
 }
 
