@@ -10,18 +10,31 @@ class Player {
     private $playerName;
 
     /**
+     * @var instanceof NextMoveProvider interface
+     */
+    private $strategy;
+
+    /**
+     * @var Game object
+     */
+    private $game;
+
+    /**
      * Class constructor
      *
-     * @param $mark, Mark object
+     * @param Mark object
+     * @param instanceof NextMoveProvider interface
+     * @param Game object
      */
-    public function __construct (Mark $mark) {
-        if ((new Mark (Mark::SYMBOL_X))->equal ($mark) ||
-            (new Mark (Mark::SYMBOL_0))->equal ($mark)) {
-
-            $this->playerName = $mark;
-        } else {
-            throw new \InvalidArgumentException ('Player can be only X or 0.');
-        }
+    public function __construct (
+        Mark $playerName, 
+        NextMoveProvider $strategy,
+        Game $game
+        ) {
+        
+        $this->playerName = $playerName;
+        $this->strategy = $strategy;
+        $this->game = $game;
     }
 
     /**
