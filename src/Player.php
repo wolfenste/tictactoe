@@ -43,4 +43,11 @@ class Player {
     public function getPlayerName () : Mark {
 	    return $this->playerName;
     }
+
+    /**
+     *
+     */
+    public function putMark () {
+        $this->getMapAccess () [$this->getStrategyPosition ()] = $this->getPLayerName ();
+    }
 }
