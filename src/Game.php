@@ -55,5 +55,12 @@ class Game {
     public function getPLayer0 () : PLayer {
         return $this->player0;
     }
+
+    /**
+     * @return Map object
+     */
+    public function getMap () : Map {
+        return $this->map;
+    }
 }
 

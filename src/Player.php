@@ -50,4 +50,32 @@ class Player {
     public function putMark () {
         $this->getMapAccess () [$this->getStrategyPosition ()] = $this->getPLayerName ();
     }
+
+    /**
+     * @return array (the array that is contained in map)
+     */
+    private function getMapAccess () : array {
+        return $this->getGame ()->getMap ()->getMarks ();
+    }
+
+    /**
+     * @return integer
+     */
+    private function getStrategyPosition () : int {
+        return $this->getStrategy ()->getPosition ();
+    }
+
+    /**
+     * @return Game object
+     */
+    private function getGame () : Game {
+        return $this->game;
+    }
+
+    /**
+     * @return instanceof NextMoveProviderInterface
+     */
+    private function getStrategy () : NextMoveProvider {
+        return $this->strategy;
+    }
 }
