@@ -37,19 +37,24 @@ class MapCoordinate {
     }
 
     /**
-     * @return integer (an index useful in map's array)
+     * @return void
      */
-    public function coordinatesToMapIndex () : int {
+    private function setMapIndex () : void {
         $sum = $this->coordinate_x + $this->coordinate_y;
         if ($coordinate_x === 1) {
-            return $sum - 2;
+            $this->mapIndex = $sum - 2;
+        } else if ($coordinate_x === 2) {
+            $this->mapIndex = $sum;
+        } else if ($coordinate_x === 3) {
+            $this->mapIndex = $sum + 2;
         }
-        if ($coordinate_x === 2) {
-            return $sum;
-        }
-        if ($coordinate_x === 3) {
-            return $sum + 2;
-        }
+    }
+
+    /**
+     * @return integer
+     */
+    public getMapIndex () : int {
+        return $this->mapIndex;
     }
 }
 

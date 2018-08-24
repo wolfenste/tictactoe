@@ -62,11 +62,11 @@ class Player {
      * @return integer (between 0 and 8)
      */
     private function getStrategyPositionAsIndex () : int {
-        $position = $this->getStrategy ()->getPositionAsMapCoordinate ();
+        $position = $this->getStrategy ()->getPosition ();
         if ($position === null) {
             throw new \Exception ('The current player did not execute a move.');
         }
-        return $position->coordinatesToMapIndex ();
+        return $position->getMapIndex ();
     }
 
     /**

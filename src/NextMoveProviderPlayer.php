@@ -12,7 +12,7 @@ class NextMoveProviderPlayer implements NextMoveProvider {
     /**
      * @return MapCoordinate object or null
      */
-    public function getPositionAsMapCoordinate () {
+    public function getPosition () {
         return $this->position;
     }
 }
