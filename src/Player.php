@@ -48,7 +48,7 @@ class Player {
      *
      */
     public function putMark () {
-        $this->getMapAccess () [$this->getStrategyPosition ()] = $this->getPLayerName ();
+        $this->getMapAccess () [$this->getStrategyPositionAsIndex ()] = $this->getPlayerName ();
     }
 
     /**
@@ -59,10 +59,14 @@ class Player {
     }
 
     /**
-     * @return integer
+     * @return integer (between 0 and 8)
      */
-    private function getStrategyPosition () : int {
-        return $this->getStrategy ()->getPosition ();
+    private function getStrategyPositionAsIndex () : int {
+        $position = $this->getStrategy ()->getPositionAsMapCoordinate ();
+        if ($position === null) {
+            throw new \Exception ('The current player did not execute a move.');
+        }
+        return $position->coordinatesToMapIndex ();
     }
 
     /**

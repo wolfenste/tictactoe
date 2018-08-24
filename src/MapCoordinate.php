@@ -19,6 +19,11 @@ class MapCoordinate {
     private $coordinate_y;
 
     /**
+     * @var integer between 0 and 8 
+     */
+    private mapIndex;
+
+    /**
      * @param integer
      * @param integer
      */
@@ -29,6 +34,22 @@ class MapCoordinate {
 
         $this->coordinate_x = $x;
         $this->coordinate_y = $y;
+    }
+
+    /**
+     * @return integer (an index useful in map's array)
+     */
+    public function coordinatesToMapIndex () : int {
+        $sum = $this->coordinate_x + $this->coordinate_y;
+        if ($coordinate_x === 1) {
+            return $sum - 2;
+        }
+        if ($coordinate_x === 2) {
+            return $sum;
+        }
+        if ($coordinate_x === 3) {
+            return $sum + 2;
+        }
     }
 }
 

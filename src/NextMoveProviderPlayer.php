@@ -5,15 +5,14 @@ namespace TicTacToe;
 
 class NextMoveProviderPlayer implements NextMoveProvider {
     /**
-     * @var integer (a position corresponding to a map cell and also corresponding to 
-     * a map's array index)
+     * @var MapCoordinate object (also, it can be null).
      */
     private $position;
 
     /**
-     * @return integer
+     * @return MapCoordinate object or null
      */
-    public function getPosition () : int {
+    public function getPositionAsMapCoordinate () {
         return $this->position;
     }
 }
