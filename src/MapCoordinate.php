@@ -34,6 +34,7 @@ class MapCoordinate {
 
         $this->coordinate_x = $x;
         $this->coordinate_y = $y;
+        $this->setMapIndex ();
     }
 
     /**
