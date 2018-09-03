@@ -3,7 +3,7 @@
 declare (strict_types = 1);
 namespace TicTacToe;
 
-class Map {
+class Map implements ReadOnlyMap, WritableMap {
     /**
      * @var array containing 9 Mark objects
      */
@@ -65,6 +65,20 @@ class Map {
         }
 
         return false;
+    }
+
+    /**
+     * @return boolean, true if the map is completed
+     */
+    public function isCompleted () : bool {
+    }
+
+    /**
+     * @param integer
+     * @param Mark object
+     * @return void
+     */
+    public function setMarksCell (int $index, Mark $mark) : void {
     }
 }
 
