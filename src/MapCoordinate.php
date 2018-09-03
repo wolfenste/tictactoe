@@ -21,7 +21,7 @@ class MapCoordinate {
     /**
      * @var integer between 0 and 8 
      */
-    private mapIndex;
+    private $mapIndex;
 
     /**
      * @param integer
@@ -42,11 +42,11 @@ class MapCoordinate {
      */
     private function setMapIndex () : void {
         $sum = $this->coordinate_x + $this->coordinate_y;
-        if ($coordinate_x === 1) {
+        if ($this->coordinate_x === 1) {
             $this->mapIndex = $sum - 2;
-        } else if ($coordinate_x === 2) {
+        } else if ($this->coordinate_x === 2) {
             $this->mapIndex = $sum;
-        } else if ($coordinate_x === 3) {
+        } else if ($this->coordinate_x === 3) {
             $this->mapIndex = $sum + 2;
         }
     }
@@ -54,7 +54,7 @@ class MapCoordinate {
     /**
      * @return integer
      */
-    public getMapIndex () : int {
+    public function getMapIndex () : int {
         return $this->mapIndex;
     }
 }
