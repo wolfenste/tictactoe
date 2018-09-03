@@ -48,7 +48,10 @@ class Player {
      *
      */
     public function putMark () {
-        $this->getGame ()->playerMoveRequest ($this->getStrategyPosition ());
+        $this->getGame ()->playerMoveRequest (
+            $this->getPlayerName (), 
+            $this->getStrategyPosition ()
+        );
     }
 
     /**
