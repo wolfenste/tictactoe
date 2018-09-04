@@ -39,7 +39,24 @@ class NextMoveProviderPlayer implements NextMoveProvider {
         if ($position !== null && !($position instanceof MapCoordinate)) {
             throw new \DomainException ('The parameter must be a MapCoordinate object or null.');
         }
-        // To do: here must be checked the position availability in map
+
+        if ($position instanceof MapCoordinate) {
+            if (!$this->checkMapAvailability ($position)) {
+                throw new \Exception ('Player made an unavailable choice.');
+            }
+        }
         $this->position = $position;
+    }
+
+    /**
+     * @param MapCoordinate object
+     * @return boolean true if the map is available at specified position
+     */
+    private function checkMapAvailability (MapCoordinate $position) : bool {
+        if ($this->map->isMapAvailable ($position->getMapIndex ())) {
+            return true;
+        }
+
+        return false;
     }
 }
