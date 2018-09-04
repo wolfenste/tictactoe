@@ -19,4 +19,13 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
         $this->assertNull ($strategy->getPosition ());
         $this->assertTrue ($map->isEmpty ());
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     */
+    public function player_strategy_is_constructed_with_an_unexpected_option () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderPlayer ($map, $this);
+    }
 }
