@@ -4,6 +4,7 @@ use TicTacToeTests\BaseClassTest;
 use TicTacToe\NextMoveProviderPlayer;
 use TicTacToe\MapCoordinate;
 use TicTacToe\Map;
+use TicTacToe\NextMoveProvider;
 
 class NextMoveProviderPlayerTest extends BaseClassTest {
     /**
