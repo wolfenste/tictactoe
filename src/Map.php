@@ -78,7 +78,7 @@ class Map implements ReadOnlyMap, WritableMap {
      * @param Mark object
      * @return void
      */
-    public function setMarksCell (int $index, Mark $mark) : void {
+    public function setMarksCell (MapCoordinate $coordinate, Mark $mark) : void {
     }
 }
 
