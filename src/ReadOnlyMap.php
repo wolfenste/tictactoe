@@ -6,6 +6,6 @@ namespace TicTacToe;
 interface ReadOnlyMap {
     public function isEmpty ();
     public function isCompleted ();
-    public function isMapAvailable (int $position);
+    public function isMapAvailable (MapCoordinate $position);
 }
 

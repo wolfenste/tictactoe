@@ -53,7 +53,7 @@ class NextMoveProviderPlayer implements NextMoveProvider {
      * @return boolean true if the map is available at specified position
      */
     private function checkMapAvailability (MapCoordinate $position) : bool {
-        if ($this->map->isMapAvailable ($position->getMapIndex ())) {
+        if ($this->map->isMapAvailable ($position)) {
             return true;
         }
 

@@ -31,7 +31,7 @@ class PlayerTest extends BaseClassTest {
         $strategyX = new NextMoveProviderPlayer ($map, $option);
         $strategy0 = new NextMoveProviderAI ($map);
         $game = new Game ($strategyX, $strategy0, $map);
-        $this->assertTrue ($map->isMapAvailable (4));
+        $this->assertTrue ($map->isMapAvailable ($option));
         $game->getPlayerX ()->putMark ();
         $this->assertTrue ((new Mark (Mark::SYMBOL_X))->equal ($map->getMarks () [4]));
     }

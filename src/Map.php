@@ -52,15 +52,12 @@ class Map implements ReadOnlyMap, WritableMap {
     }
 
     /**
-     * @param integer between 1 and 9
+     * @param MapCoordinate object
      * @return boolean
      */
-    public function isMapAvailable (int $position) : bool {
-        if ($position < 1 || $position > 9) {
-            throw new \RangeException ('The argument must be into interval [1, 9]');
-        }
+    public function isMapAvailable (MapCoordinate $position) : bool {
 
-        if ((new Mark (Mark::SYMBOL_NONE))->equal ($this->marks [$position - 1])) {
+        if ((new Mark (Mark::SYMBOL_NONE))->equal ($this->marks [$position->getMapIndex ()])) {
             return true;
         }
 

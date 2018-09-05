@@ -3,6 +3,7 @@
 use TicTacToeTests\BaseClassTest;
 use TicTacToe\Map;
 use TicTacToe\Mark;
+use TicTacToe\MapCoordinate;
 
 class MapTest extends BaseClassTest {
     /**
@@ -60,15 +61,7 @@ class MapTest extends BaseClassTest {
      */
     public function map_is_available_at_position_5 () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $this->assertTrue ($map->isMapAvailable (5));
-    }
-
-    /**
-     * @expectedException RangeException
-     */
-    public function is_map_available_method_receives_unexpected_parameter () {
-        $map = new Map ($this->createEmptyTableSpec ());
-        $map->isMapAvailable (11);
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (2, 3)));
     }
 }
 
