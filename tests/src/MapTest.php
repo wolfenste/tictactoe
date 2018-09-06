@@ -63,5 +63,15 @@ class MapTest extends BaseClassTest {
         $map = new Map ($this->createEmptyTableSpec ());
         $this->assertTrue ($map->isMapAvailable (new MapCoordinate (2, 3)));
     }
+
+    /**
+     * @test
+     */
+    public function map_is_not_available_at_position_5 () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            5 => new Mark (Mark::SYMBOL_X)
+        )));
+        $this->assertFalse ($map->isMapAvailable (new MapCoordinate (2, 3)));
+     }
 }
 
