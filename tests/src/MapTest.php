@@ -103,5 +103,22 @@ class MapTest extends BaseClassTest {
         )));
         $this->assertFalse ($map->isCompleted ());
     }
+
+    /**
+     * @test
+     */
+    public function map_is_available_at_any_position () {
+        $map = new Map ($this->createEmptyTableSpec ());
+
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (1, 1)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (1, 2)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (1, 3)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (2, 1)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (2, 2)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (2, 3)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (3, 1)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (3, 2)));
+        $this->assertTrue ($map->isMapAvailable (new MapCoordinate (3, 3)));
+    }
 }
 
