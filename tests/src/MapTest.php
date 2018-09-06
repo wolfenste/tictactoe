@@ -72,6 +72,24 @@ class MapTest extends BaseClassTest {
             5 => new Mark (Mark::SYMBOL_X)
         )));
         $this->assertFalse ($map->isMapAvailable (new MapCoordinate (2, 3)));
-     }
+    }
+
+    /**
+     * @test
+     */
+    public function map_is_completed () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            0 => new Mark (Mark::SYMBOL_X),
+            1 => new Mark (Mark::SYMBOL_0),
+            2 => new Mark (Mark::SYMBOL_X),
+            3 => new Mark (Mark::SYMBOL_0),
+            4 => new Mark (Mark::SYMBOL_X),
+            5 => new Mark (Mark::SYMBOL_0),
+            6 => new Mark (Mark::SYMBOL_X),
+            7 => new Mark (Mark::SYMBOL_0),
+            8 => new Mark (Mark::SYMBOL_X)
+        )));
+        $this->assertTrue ($map->isCompleted ());
+    }
 }
 
