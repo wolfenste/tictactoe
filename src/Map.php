@@ -69,6 +69,13 @@ class Map implements ReadOnlyMap, WritableMap {
      * @return boolean, true if the map is completed
      */
     public function isCompleted () : bool {
+        foreach ($this->marks as $key => $val) {
+            if ((new Mark (Mark::SYMBOL_NONE))->equal ($val)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
