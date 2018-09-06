@@ -19,11 +19,6 @@ class MapCoordinate {
     private $coordinate_y;
 
     /**
-     * @var integer between 0 and 8 
-     */
-    private $mapIndex;
-
-    /**
      * @param integer
      * @param integer
      */
@@ -34,28 +29,20 @@ class MapCoordinate {
 
         $this->coordinate_x = $x;
         $this->coordinate_y = $y;
-        $this->setMapIndex ();
     }
 
     /**
-     * @return void
+     * @return int between 1 and 3
      */
-    private function setMapIndex () : void {
-        $sum = $this->coordinate_x + $this->coordinate_y;
-        if ($this->coordinate_x === 1) {
-            $this->mapIndex = $sum - 2;
-        } else if ($this->coordinate_x === 2) {
-            $this->mapIndex = $sum;
-        } else if ($this->coordinate_x === 3) {
-            $this->mapIndex = $sum + 2;
-        }
+    public function getCoordinateX () {
+        return $this->coordinate_x;
     }
 
     /**
-     * @return integer
+     * @return int between 1 and 3
      */
-    public function getMapIndex () : int {
-        return $this->mapIndex;
+    public function getCoordinateY () {
+        return $this->coordinate_y;
     }
 }
 

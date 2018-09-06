@@ -56,8 +56,9 @@ class Map implements ReadOnlyMap, WritableMap {
      * @return boolean
      */
     public function isMapAvailable (MapCoordinate $position) : bool {
+        $index = $this->coordinatesToMapIndex ($position);
 
-        if ((new Mark (Mark::SYMBOL_NONE))->equal ($this->marks [$position->getMapIndex ()])) {
+        if ((new Mark (Mark::SYMBOL_NONE))->equal ($this->marks [$index])) {
             return true;
         }
 
@@ -76,6 +77,26 @@ class Map implements ReadOnlyMap, WritableMap {
      * @return void
      */
     public function setMarksCell (MapCoordinate $coordinate, Mark $mark) : void {
+    }
+
+    /**
+     * @param MapCoordinate object
+     * @return int between 0 and 8
+     */
+    private function coordinatesToMapIndex (MapCoordinate $position) : int {
+        $coordinate_x = $position->getCoordinateX ();
+        $coordinate_y = $position->getCoordinateY ();
+        $sum = $coordinate_x + $coordinate_y;
+
+        if ($coordinate_x === 1) {
+            return $sum - 2;
+        }
+        if ($coordinate_x === 2) {
+            return $sum;
+        }
+        if ($coordinate_x === 3) {
+            return $sum + 2;
+        }
     }
 }
 
