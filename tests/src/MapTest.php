@@ -91,5 +91,17 @@ class MapTest extends BaseClassTest {
         )));
         $this->assertTrue ($map->isCompleted ());
     }
+
+    /**
+     * @test
+     */
+    public function map_is_not_completed () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            2 => new Mark (Mark::SYMBOL_X),
+            5 => new Mark (Mark::SYMBOL_0),
+            8 => new Mark (Mark::SYMBOL_X)
+        )));
+        $this->assertFalse ($map->isCompleted ());
+    }
 }
 
