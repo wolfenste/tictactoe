@@ -33,5 +33,16 @@
 			"TicTacToeTests\\" : "tests/src/",
 			"TicTacToeTestsIntegration\\" : "tests/integration/domain/"
 		}
-	}
+	},
+    "scripts" : {
+        "test" : "phpunit",
+        "testIntegration" : "phpunit ./tests/integration/domain/TicTacToeTest.php",
+        "testGameStatus" : "phpunit ./tests/src/GameStatusTest.php",
+        "testGame" : "phpunit ./tests/src/GameTest.php",
+        "testMapCoordinate" : "phpunit ./tests/src/MapCoordinateTest.php",
+        "testMap" : "phpunit ./tests/src/MapTest.php",
+        "testMark" : "phpunit ./tests/src/MarkTest.php",
+        "testNextMoveProviderPlayer" : "phpunit ./tests/src/NextMoveProviderPlayerTest.php",
+        "testPlayer" : "phpunit ./tests/src/PlayerTest.php"
+    }
 }
