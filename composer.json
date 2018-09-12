@@ -35,14 +35,11 @@
 		}
 	},
     "scripts" : {
-        "test" : "phpunit",
-        "testIntegration" : "phpunit ./tests/integration/domain/TicTacToeTest.php",
-        "testGameStatus" : "phpunit ./tests/src/GameStatusTest.php",
-        "testGame" : "phpunit ./tests/src/GameTest.php",
-        "testMapCoordinate" : "phpunit ./tests/src/MapCoordinateTest.php",
-        "testMap" : "phpunit ./tests/src/MapTest.php",
-        "testMark" : "phpunit ./tests/src/MarkTest.php",
-        "testNextMoveProviderPlayer" : "phpunit ./tests/src/NextMoveProviderPlayerTest.php",
-        "testPlayer" : "phpunit ./tests/src/PlayerTest.php"
+        "test-all" : "./vendor/bin/phpunit ./tests",
+        "test-unit" : "./vendor/bin/phpunit ./tests/src",
+        "test-integration" : "./vendor/bin/phpunit ./tests/integration",
+        "test-all-coverage" : "./vendor/bin/phpunit ./tests --coverage-html ./logs",
+        "test-unit-coverage" : "./vendor/bin/phpunit ./tests/src --coverage-html ./logs",
+        "test-integration-coverage" : "./vendor/bin/phpunit ./tests/integration --coverage-html ./logs"
     }
 }
