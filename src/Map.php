@@ -91,19 +91,7 @@ class Map implements ReadOnlyMap, WritableMap {
      * @return int between 0 and 8
      */
     private function coordinatesToMapIndex (MapCoordinate $position) : int {
-        $coordinate_x = $position->getCoordinateX ();
-        $coordinate_y = $position->getCoordinateY ();
-        $sum = $coordinate_x + $coordinate_y;
-
-        if ($coordinate_x === 1) {
-            return $sum - 2;
-        }
-        if ($coordinate_x === 2) {
-            return $sum;
-        }
-        if ($coordinate_x === 3) {
-            return $sum + 2;
-        }
+        return 3 * ($position->getCoordinateX () - 1) + ($position->getCoordinateY () -1);
     }
 }
 
