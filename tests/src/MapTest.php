@@ -120,5 +120,18 @@ class MapTest extends BaseClassTest {
         $this->assertTrue ($map->isMapAvailable (new MapCoordinate (3, 2)));
         $this->assertTrue ($map->isMapAvailable (new MapCoordinate (3, 3)));
     }
+
+    /**
+     * @test
+     */
+    public function put_symbol_x_at_map_coordinate_2_3 () {
+        $map = new Map ($this->createEmptyTableSpec ());
+
+        $map->setMarksCell (new MapCoordinate (2, 3), new Mark (Mark::SYMBOL_X));
+        $this->assertFalse ($map->isMapAvailable (new MapCoordinate (2, 3)));
+        $this->assertTrue ((new Mark (Mark::SYMBOL_X))->equal (
+            $map->getMarks () [5]
+        ));
+    }
 }
 
