@@ -133,5 +133,15 @@ class MapTest extends BaseClassTest {
             $map->getMarks () [5]
         ));
     }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function put_symbol_none_at_map_coordinate_2_3 () {
+        $map = new Map ($this->createEmptyTableSpec ());
+
+        $map->setMarksCell (new MapCoordinate (2, 3), new Mark (Mark::SYMBOL_NONE));
+    }
 }
 
