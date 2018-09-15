@@ -83,7 +83,14 @@ class Map implements ReadOnlyMap, WritableMap {
      * @param Mark object
      * @return void
      */
-    public function setMarksCell (MapCoordinate $coordinate, Mark $mark) : void {
+    public function setMarksCell (MapCoordinate $position, Mark $mark) : void {
+        if ((new Mark (Mark::SYMBOL_NONE))->equal ($mark)) {
+            throw new \InvalidArgumentException ('SYMBOL_NONE mark is not allowed.');
+        }
+
+        if ($this->isMapAvailable ($position)) {
+            $this->marks [$this->coordinatesToMapIndex ($position)] = $mark;
+        }
     }
 
     /**
