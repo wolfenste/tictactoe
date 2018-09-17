@@ -7,6 +7,7 @@ use TicTacToe\NextMoveProviderAI;
 use TicTacToe\Map;
 use TicTacToe\Mark;
 use TicTacToe\MapCoordinate;
+use TicTacToe\BadRequestException;
 
 class GameTest extends BaseClassTest {
     /**
@@ -37,5 +38,22 @@ class GameTest extends BaseClassTest {
             $game->getPlayerX ()->getStrategyPosition ()
         );
         $this->assertTrue ((new Mark (Mark::SYMBOL_X))->equal ($map->getMarks () [4]));
+    }
+
+    /**
+     * @test
+     * @expectedException TicTacToe\BadRequestException
+     * @expectedExceptionMessage The player requests an unavailable position.
+     */
+    public function player_x_requests_an_unavailable_position_2_2 () {
+        $map = new Map ($this->createEmptyTableSpec (array (4 => new Mark (Mark::SYMBOL_0))));
+        $option = new MapCoordinate (2, 3);
+        $strategyX = new NextMoveProviderPlayer ($map, $option);
+        $strategy0 = new NextMoveProviderAI ($map);
+        $game = new Game ($strategyX, $strategy0, $map);
+        $game->playerMoveRequest (
+            $game->getPlayerX ()->getPlayerName (),
+            new MapCoordinate (2, 2)
+        );
     }
 }
