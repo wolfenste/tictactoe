@@ -35,5 +35,18 @@ class PlayerTest extends BaseClassTest {
         $game->getPlayerX ()->putMark ();
         $this->assertTrue ((new Mark (Mark::SYMBOL_X))->equal ($map->getMarks () [4]));
     }
+
+    /**
+     * @test
+     * @expectedException \Exception
+     * @expectedExceptionMessage The current player did not execute a move.
+     */
+    public function player_x_did_not_execute_a_move () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategyX = new NextMoveProviderPlayer ($map);
+        $strategy0 = new NextMoveProviderAI ($map);
+        $game = new Game ($strategyX, $strategy0, $map);
+        $position = $game->getPlayerX ()->getStrategyPosition ();
+    }
 }
 
