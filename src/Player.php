@@ -57,7 +57,7 @@ class Player {
     /**
      * @return MapCoordinate object
      */
-    private function getStrategyPosition () : MapCoordinate {
+    public function getStrategyPosition () : MapCoordinate {
         $position = $this->getStrategy ()->getPosition ();
         if ($position === null) {
             throw new \Exception ('The current player did not execute a move.');
