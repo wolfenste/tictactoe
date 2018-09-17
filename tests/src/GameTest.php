@@ -56,4 +56,20 @@ class GameTest extends BaseClassTest {
             new MapCoordinate (2, 2)
         );
     }
+
+    /**
+     * @test
+     * @expectedException TicTacToe\BadRequestException
+     * @expectedExceptionMessage Current player and requester mismatch.
+     */
+    public function player_0_tries_to_move_without_being_the_current_player () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategyX = new NextMoveProviderPlayer ($map, new MapCoordinate (1, 2));
+        $strategy0 = new NextMoveProviderPlayer ($map, new MapCoordinate (2, 2));
+        $game = new Game ($strategyX, $strategy0, $map);
+        $game->playerMoveRequest (
+            $game->getPlayer0 ()->getPlayerName (),
+            $game->getPlayer0 ()->getStrategyPosition ()
+        );
+    }
 }

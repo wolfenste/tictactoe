@@ -73,7 +73,6 @@ class Game {
             throw new BadRequestException ('The player requests an unavailable position.');
         }
         
-        // verifica daca $mark se potriveste cu player-ul care a solicitat cererea
         if (!$this->getCurrentPlayerName ()->equal ($mark)) {
             throw new BadRequestException ('Current player and requester mismatch.');
         }
