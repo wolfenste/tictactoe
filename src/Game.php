@@ -19,6 +19,11 @@ class Game {
      */
     private $map;
 
+    /**
+     * @var Player object
+     */
+    private $currentPlayer;
+
     /***
      * Class constructor
      * @param $strategyX instanceof NextMoveProvider interface
@@ -33,6 +38,21 @@ class Game {
         $this->playerX = new Player (new Mark (Mark::SYMBOL_X), $strategyX, $this);
         $this->player0 = new Player (new Mark (Mark::SYMBOL_0), $strategy0, $this);
         $this->map = $map;
+
+        $countX = 0;
+        $count0 = 0;
+        foreach ($this->getMap ()->getMarks ()  as $key => $mark) {
+            if ($mark->equal (new Mark (Mark::SYMBOL_X))) {
+                $countX++;
+            } else if ($mark->equal (new Mark (Mark::SYMBOL_0))) {
+                $count0++;
+            }
+        }
+        if ($countX <= $count0) { // by default currentPlayer is X; this should be changed !!
+            $this->setCurrentPlayer ($this->playerX);
+        } else {
+            $this->setCurrentPlayer ($this->player0);
+        }
     }
 
     /**
@@ -99,9 +119,15 @@ class Game {
      * @return Player object
      */
     private function getCurrentPlayer () : Player {
-        // !! Just for testing purpose, the current player is X
-        // the function still MUST be correctly implemented 
-        return $this->getPlayerX ();
+        return $this->currentPlayer;
+    }
+
+    /**
+     * @param Player object
+     * @return void
+     */
+    private function setCurrentPlayer (Player $player) {
+        $this->currentPlayer = $player;
     }
 }
 
