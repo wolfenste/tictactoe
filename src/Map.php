@@ -100,5 +100,28 @@ class Map implements ReadOnlyMap, WritableMap {
     private function coordinatesToMapIndex (MapCoordinate $position) : int {
         return 3 * ($position->getCoordinateX () - 1) + ($position->getCoordinateY () -1);
     }
+
+    /** 
+     * @param MapCoordinate object
+     * @param Mark object
+     * @return bool, true if the given Mark object equals the object found at the given
+     * MapCoordinate address
+     */
+    public function isMatching (MapCoordinate $position, Mark $mark) : bool {
+        if ($mark->equal ($this->getMarkAtMapCoordinate ($position))) {
+            return true;
+        }
+
+        return false;
+    }   
+
+    /** 
+     * @param MapCoordinate
+     * @return Mark object
+     */
+    private function getMarkAtMapCoordinate (MapCoordinate $position) : Mark {
+        return $this->getMarks () [$this->coordinatesToMapIndex ($position)];
+    }   
+    
 }
 
