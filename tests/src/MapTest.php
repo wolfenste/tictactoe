@@ -143,5 +143,19 @@ class MapTest extends BaseClassTest {
 
         $map->setMarksCell (new MapCoordinate (2, 3), new Mark (Mark::SYMBOL_NONE));
     }
+
+    /**
+     * @test
+     */
+    public function the_given_mark_matches_the_map_element_at_first_position () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            0 => new Mark (Mark::SYMBOL_0)
+        )));
+
+        $this->assertTrue ($map->isMatching (
+            new MapCoordinate (1, 1), 
+            new Mark (Mark::SYMBOL_0)
+        ));
+    }
 }
 
