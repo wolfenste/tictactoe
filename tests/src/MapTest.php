@@ -157,5 +157,19 @@ class MapTest extends BaseClassTest {
             new Mark (Mark::SYMBOL_0)
         ));
     }
+
+    /**
+     * @test
+     */
+    public function the_given_mark_doesnt_match_the_map_element_at_first_position () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            0 => new Mark (Mark::SYMBOL_X)
+        )));
+
+        $this->assertFalse ($map->isMatching (
+            new MapCoordinate (1, 1), 
+            new Mark (Mark::SYMBOL_0)
+        ));
+    }
 }
 
