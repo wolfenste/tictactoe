@@ -13,7 +13,7 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
      */
     public function player_strategy_is_constructed_with_an_empty_map_and_null_option () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $strategy = new NextMoveProviderPlayer ($map);
+        $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map);
         
         $this->assertTrue (is_object ($strategy));
         $this->assertTrue ($strategy instanceof NextMoveProvider);
@@ -27,7 +27,7 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
      */
     public function player_strategy_is_constructed_with_an_unexpected_option () {
         $map = new Map ($this->createEmptyTableSpec ());
-        $strategy = new NextMoveProviderPlayer ($map, $this);
+        $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $this);
     }
 
     /**
@@ -39,6 +39,6 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
             0 => new Mark (Mark::SYMBOL_X)
         )));
         $option = new MapCoordinate (MapCoordinate::ONE, MapCoordinate::ONE);
-        $strategy = new NextMoveProviderPlayer ($map, $option);
+        $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
     }
 }
