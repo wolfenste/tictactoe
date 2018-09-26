@@ -18,7 +18,7 @@ class TicTacToeTest extends BaseClassTest {
         $map = new Map ($this->createEmptyTableSpec ());
         $option = null;
         $strategyX = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
-        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $mark0, $map);
+        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
 	    $this->assertTrue ((new GameStatus (GameStatus::STATUS_START))->equals 
@@ -68,7 +68,7 @@ class TicTacToeTest extends BaseClassTest {
         $map = new Map ($marks);
         $option = new MapCoordinate (1, 3);
         $strategyX = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
-        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $mark0, $map);
+        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 
 	    $this->assertFalse ($game->isMapEmpty ());
@@ -92,7 +92,7 @@ class TicTacToeTest extends BaseClassTest {
         $map = new Map ($marks);
         $option = null;
         $strategyX = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
-        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $mark0, $map);
+        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $map);
 	    $game = new Game ($strategyX, $strategy0, $map);
         
 	    $this->assertFalse ($game->isMapEmpty ());
@@ -109,7 +109,7 @@ class TicTacToeTest extends BaseClassTest {
         $map = new Map ($this->createEmptyTableSpec ());
         $option = new MapCoordinate (1, 2);
         $strategyX = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
-        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $mark0, $map);
+        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $map);
 	    $game = new Game ($strategyX, $strategy0, $map);
 	
 	    $game->getCurrentPlayer ()->putMark (); // X is the current player

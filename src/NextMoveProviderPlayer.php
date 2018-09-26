@@ -5,6 +5,11 @@ namespace TicTacToe;
 
 class NextMoveProviderPlayer implements NextMoveProvider {
     /**
+     * @var Mark object
+     */
+    private $myMark;
+
+    /**
      * @var MapCoordinate object (also, it can be null).
      */
     private $position;
@@ -16,10 +21,16 @@ class NextMoveProviderPlayer implements NextMoveProvider {
 
     /**
      * Class constructor
+     * @param Mark object
      * @param instanceof ReadOnlyMap
      * @param MapCoordinate object or null
      */
-    public function __construct (ReadOnlyMap $map, $position = null) {
+    public function __construct (Mark $mark, ReadOnlyMap $map, $position = null) {
+        if ($mark->equal (new Mark (Mark::SYMBOL_NONE))) {
+            throw new \InvalidArgumentException ('SYMBOL_NONE Mark objects aren\'t allowed.');
+        }
+
+        $this->myMark = $mark;
         $this->map = $map;
         $this->setPosition ($position);
     }

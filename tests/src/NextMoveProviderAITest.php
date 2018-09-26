@@ -17,7 +17,7 @@ class NextMoveProviderAITest extends BaseClassTest {
         
         $this->assertTrue (is_object ($strategy));
         $this->assertTrue ($strategy instanceof NextMoveProvider);
-        $this->assertTrue ($strategy->getMark ()->equal (new Mark (Mark::SYMBOL_X)));
+        $this->assertTrue ($strategy->getMyMark ()->equal (new Mark (Mark::SYMBOL_X)));
         $this->assertTrue ($map->isEmpty ());
     }
 }
