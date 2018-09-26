@@ -7,7 +7,7 @@ class Map implements ReadOnlyMap, WritableMap {
     /**
      * @var array containing 9 Mark objects
      */
-    private $marks;
+    protected $marks;
 
     /*
      * @param $marks, array containing 9 Mark objects
