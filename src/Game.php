@@ -79,7 +79,7 @@ class Game {
     /**
      * @return Map object
      */
-    public function getMap () : Map {
+    private function getMap () : Map {
         return $this->map;
     }
 
