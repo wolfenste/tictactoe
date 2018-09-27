@@ -97,7 +97,7 @@ class Map implements ReadOnlyMap, WritableMap {
      * @param MapCoordinate object
      * @return int between 0 and 8
      */
-    private function coordinatesToMapIndex (MapCoordinate $position) : int {
+    protected function coordinatesToMapIndex (MapCoordinate $position) : int {
         return 3 * ($position->getCoordinateX () - 1) + ($position->getCoordinateY () -1);
     }
 
@@ -119,7 +119,7 @@ class Map implements ReadOnlyMap, WritableMap {
      * @param MapCoordinate
      * @return Mark object
      */
-    private function getMarkAtMapCoordinate (MapCoordinate $position) : Mark {
+    protected function getMarkAtMapCoordinate (MapCoordinate $position) : Mark {
         return $this->getMarks () [$this->coordinatesToMapIndex ($position)];
     }   
     
