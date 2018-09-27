@@ -122,6 +122,20 @@ class Map implements ReadOnlyMap, WritableMap {
     protected function getMarkAtMapCoordinate (MapCoordinate $position) : Mark {
         return $this->getMarks () [$this->coordinatesToMapIndex ($position)];
     }   
-    
+
+    /** 
+     * @param int, between 0 and 8
+     * @return MapCoodinate object
+     */
+    protected function mapIndexToCoordinates (int $index) : MapCoordinate {
+        if ($index < 0 || $index > 8) {
+            throw new \OutOfBoundsException ('The parameter must be in range [0, 9)');
+        }
+
+        $coordinate_x = (int) (($index + 3) / 3); 
+        $coordinate_y = (int) (($index + 3) % 3 + 1); 
+
+        return new MapCoordinate ($coordinate_x, $coordinate_y);
+    } 
 }
 
