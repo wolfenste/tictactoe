@@ -13,7 +13,8 @@ class MapAITest extends BaseClassTest {
         $map = new MapAI ($this->createEmptyTableSpec (array (
             0 => new Mark (Mark::SYMBOL_X)
         )));
-
+        
+        $this->assertTrue (($map->getMarks () [0])->equal (new Mark (Mark::SYMBOL_X)));
         $map->erase (new MapCoordinate (1, 1));
         $this->assertTrue (($map->getMarks () [0])->equal (new Mark (Mark::SYMBOL_NONE)));
     }
