@@ -38,7 +38,7 @@ class NextMoveProviderPlayer implements NextMoveProvider {
     /**
      * @return MapCoordinate object or null
      */
-    public function getPosition () {
+    public function getNextMove () {
         return $this->position;
     }
 

@@ -39,6 +39,12 @@ class NextMoveProviderAI implements NextMoveProvider {
     }
 
     /**
+     * @return MapCoordinate object or null
+     */
+    public function getNextMove () {
+    }
+
+    /**
      * @param Mark object
      * @return void
      */
