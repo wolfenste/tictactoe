@@ -18,4 +18,26 @@ class MapAITest extends BaseClassTest {
         $map->erase (new MapCoordinate (1, 1));
         $this->assertTrue (($map->getMarks () [0])->equal (new Mark (Mark::SYMBOL_NONE)));
     }
+
+    /**
+     * @test
+     */
+    public function only_available_moves_are_available () {
+        $map = new MapAI ($this->createEmptyTableSpec (array (
+            0 => new Mark (Mark::SYMBOL_0),
+            4 => new Mark (Mark::SYMBOL_X),
+            6 => new Mark (Mark::SYMBOL_0),
+            8 => new Mark (Mark::SYMBOL_X)
+        )));
+
+        $availableMoves = $map->getAvailableMoves ();
+
+        foreach ($map->getMarks () as $index => $mark) {
+            if (array_key_exists ($index, $availableMoves)) {
+                $this->assertTrue ($mark->equal (new Mark (Mark::SYMBOL_NONE)));
+            } else {
+                $this->assertFalse ($mark->equal (new Mark (Mark::SYMBOL_NONE)));
+            }
+        }
+    }
 }
