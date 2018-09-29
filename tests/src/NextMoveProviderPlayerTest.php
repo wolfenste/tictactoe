@@ -41,4 +41,14 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
         $option = new MapCoordinate (MapCoordinate::ONE, MapCoordinate::ONE);
         $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map, $option);
     }
+
+    /**
+     * @test
+     */
+    public function my_mark_is_symbol_x () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_X), $map);
+
+        $this->assertTrue ($strategy->getMyMark ()->equal (new Mark (Mark::SYMBOL_X)));
+    }
 }
