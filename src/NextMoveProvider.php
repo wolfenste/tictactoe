@@ -8,5 +8,10 @@ interface NextMoveProvider {
      * @return MapCoordinate object or null
      */
     public function getNextMove () {}
+
+    /**
+     * @return Mark object
+     */
+    public function getMyMark () : Mark {}
 }
 
