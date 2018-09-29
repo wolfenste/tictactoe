@@ -48,5 +48,17 @@ class PlayerTest extends BaseClassTest {
         $game = new Game ($strategyX, $strategy0, $map);
         $position = $game->getPlayerX ()->getStrategyPosition ();
     }
+
+    /**
+     * @test
+     * @expectedException \Exception 
+     * @expectedExceptionMessage Mismatch between Player's Mark and its NextMoveProvider's Mark
+     */
+    public function a_player_receives_a_strategy_carrying_another_mark () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategyX = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_0), $map);
+        $strategy0 = new NextMoveProviderAI (new Mark (Mark::SYMBOL_0), $map);
+        $game = new Game ($strategyX, $strategy0, $map);
+    }
 }
 
