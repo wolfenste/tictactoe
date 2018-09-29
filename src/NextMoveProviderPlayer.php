@@ -36,6 +36,13 @@ class NextMoveProviderPlayer implements NextMoveProvider {
     }
 
     /**
+     * @return Mark object
+     */
+    public function getMyMark () : Mark {
+        return $this->myMark;
+    }
+
+    /**
      * @return MapCoordinate object or null
      */
     public function getNextMove () {
