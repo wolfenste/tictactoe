@@ -30,4 +30,14 @@ class NextMoveProviderAITest extends BaseClassTest {
         $map = new Map ($this->createEmptyTableSpec ());
         $strategy = new NextMoveProviderAI (new Mark (Mark::SYMBOL_NONE), $map);
     }
+
+    /**
+     * @test
+     */
+    public function ai_next_move_is_a_valid_mapcoordinate_object () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAI (new Mark (Mark::SYMBOL_X), $map);
+
+        $this->assertTrue ($strategy->getNextMove () instanceof MapCoordinate);
+    }
 }
