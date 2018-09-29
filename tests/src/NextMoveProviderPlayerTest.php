@@ -17,7 +17,7 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
         
         $this->assertTrue (is_object ($strategy));
         $this->assertTrue ($strategy instanceof NextMoveProvider);
-        $this->assertNull ($strategy->getPosition ());
+        $this->assertNull ($strategy->getNextMove ());
         $this->assertTrue ($map->isEmpty ());
     }
 
