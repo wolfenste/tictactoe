@@ -30,7 +30,7 @@ class NextMoveProviderAI implements NextMoveProvider {
      */
     public function __construct (Mark $mark, ReadonlyMap $map) {
         if ($mark->equal (new Mark (Mark::SYMBOL_NONE))) {
-            throw new \InvalidArgumentException ('SYMBOL_NONE Mark objects aren\'t allowed.');
+            throw new \DomainException ('SYMBOL_NONE Mark objects aren\'t allowed.');
         }
 
         $this->setMyMark ($mark);

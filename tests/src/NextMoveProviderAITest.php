@@ -20,4 +20,14 @@ class NextMoveProviderAITest extends BaseClassTest {
         $this->assertTrue ($strategy->getMyMark ()->equal (new Mark (Mark::SYMBOL_X)));
         $this->assertTrue ($map->isEmpty ());
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     * @expectedExceptionMessage SYMBOL_NONE Mark objects aren't allowed.
+     */
+    public function ai_strategy_is_constructed_with_a_wrong_symbol () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAI (new Mark (Mark::SYMBOL_NONE), $map);
+    }
 }
