@@ -27,7 +27,7 @@ class NextMoveProviderPlayer implements NextMoveProvider {
      */
     public function __construct (Mark $mark, ReadOnlyMap $map, $position = null) {
         if ($mark->equal (new Mark (Mark::SYMBOL_NONE))) {
-            throw new \InvalidArgumentException ('SYMBOL_NONE Mark objects aren\'t allowed.');
+            throw new \DomainException ('SYMBOL_NONE Mark objects aren\'t allowed.');
         }
 
         $this->myMark = $mark;

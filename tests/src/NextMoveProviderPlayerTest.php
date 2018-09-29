@@ -51,4 +51,14 @@ class NextMoveProviderPlayerTest extends BaseClassTest {
 
         $this->assertTrue ($strategy->getMyMark ()->equal (new Mark (Mark::SYMBOL_X)));
     }
+
+    /**
+     * @test
+     * @expectedException DomainException
+     * @expectedExceptionMessage SYMBOL_NONE Mark objects aren't allowed.
+     */
+    public function player_strategy_is_constructed_with_a_wrong_mark () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderPlayer (new Mark (Mark::SYMBOL_NONE), $map);
+    }
 }
