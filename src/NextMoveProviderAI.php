@@ -4,6 +4,21 @@ declare (strict_types = 1);
 namespace TicTacToe;
 
 class NextMoveProviderAI implements NextMoveProvider {
+    /** 
+     * @const AI chooses the first available position
+     */
+    const STR_FIRST_POS = 'str_first_pos';
+
+    /** 
+     * @const AI chooses a random position
+     */
+    const STR_RANDOM_POS = 'str_random_pos';
+
+    /** 
+     * @const AI's improved strategy
+     */
+    const STR_IMPROVED_POS = 'str_improved_pos';
+
     /**
      * @var MapCoordinate object
      */
