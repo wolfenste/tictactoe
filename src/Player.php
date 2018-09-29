@@ -31,7 +31,13 @@ class Player {
         NextMoveProvider $strategy,
         Game $game
         ) {
-        
+
+        if (!$playerName->equal ($strategy->getMyMark ())) {
+            throw new \Exception (
+                'Mismatch between Player\'s Mark and its NextMoveProvider\'s Mark'
+            );
+        }
+
         $this->playerName = $playerName;
         $this->strategy = $strategy;
         $this->game = $game;
