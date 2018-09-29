@@ -66,5 +66,19 @@ class NextMoveProviderAI implements NextMoveProvider {
         $this->oppMark = ($this->getMyMark ()->equal (new Mark (Mark::SYMBOL_X))) ?
             new Mark (Mark::SYMBOL_0) : new Mark (Mark::SYMBOL_X);
     }
+
+    /** 
+     * @return Mark
+     */
+    private function getOppMark () : Mark {
+        return $this->oppMark;
+    }   
+
+    /** 
+     * @return Map object
+     */
+    private function getMap () : Map {
+        return $this->map;
+    }  
 }
 
