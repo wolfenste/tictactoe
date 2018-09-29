@@ -20,6 +20,11 @@ class NextMoveProviderAI implements NextMoveProvider {
     const STR_IMPROVED_POS = 'str_improved_pos';
 
     /**
+     * @var string, will be initialized with one of the three difficulty constants
+     */
+    private $level;
+
+    /**
      * @var MapCoordinate object
      */
     private $position;
@@ -51,6 +56,8 @@ class NextMoveProviderAI implements NextMoveProvider {
         $this->setMyMark ($mark);
         $this->setOppMark ();
         $this->map = new MapAI ($map->getMarks ());
+        $this->level = self::STR_FIRST_POS; // !! This must be changed according to 
+            // player's option
     }
 
     /**
