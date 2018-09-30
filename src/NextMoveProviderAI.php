@@ -110,6 +110,25 @@ class NextMoveProviderAI implements NextMoveProvider {
     private function getLevel () : string {
         return $this->level;
     }
+
+    /**
+     * @return void
+     */
+    private function setPosition () : void {
+        switch ($this->getLevel ()) {
+            case self::STR_FIRST_POS :
+                $this->position = $this->getFirstAvailablePositionStrategy ();
+                break;
+            case self::STR_RANDOM_POS :
+                $this->position = $this->getRandomBasedStrategy ();
+                break;
+            case self::STR_IMPROVED_POS :
+                $this->position = $this->getImprovedStrategy ();
+                break;
+            default :
+                $this->position = $this->getImprovedStrategy ();
+        }
+    }
 }
 
 
