@@ -39,6 +39,11 @@ class NextMoveProviderAI implements NextMoveProvider {
      */
     private $oppMark;
 
+    /**
+     * @var bool, true if the player having this strategy waits this round
+     */
+    private $iAmWaiting;
+
     /** 
      * @var Map object, implements ReadOnlyMap interface
      */
@@ -47,17 +52,33 @@ class NextMoveProviderAI implements NextMoveProvider {
      * Class constructor
      * @param Mark object
      * @param Map object
+     * @param string
+     * @param bool, true if the player having this strategy waits this round
      */
-    public function __construct (Mark $mark, ReadonlyMap $map) {
+    public function __construct (
+        Mark $mark,
+        ReadonlyMap $map,
+        string $level = self::STR_IMPROVED_POS,
+        bool $iAmWaiting = true) {
+
         if ($mark->equal (new Mark (Mark::SYMBOL_NONE))) {
             throw new \DomainException ('SYMBOL_NONE Mark objects aren\'t allowed.');
+        }
+        
+        if ($level !== self::STR_FIRST_POS &&
+            $level !== self::STR_RANDOM_POS &&
+            $level !== self::STR_IMPROVED_POS) {
+
+            throw new \DomainException (
+                'Third parameter must match one of the STR_* class constants'
+            );
         }
 
         $this->setMyMark ($mark);
         $this->setOppMark ();
         $this->map = new MapAI ($map->getMarks ());
-        $this->level = self::STR_FIRST_POS; // !! This must be changed according to 
-            // player's option
+        $this->level = $level;
+        $this->iAmWaiting = $iAmWaiting;
         $this->setPosition ();
 
     }
@@ -114,9 +135,21 @@ class NextMoveProviderAI implements NextMoveProvider {
     }
 
     /**
+     * @return bool
+     */
+    private function iAmWaiting () : bool {
+        return $this->iAmWaiting;
+    }
+
+    /**
      * @return void
      */
     private function setPosition () : void {
+        if ($this->iAmWaiting) {
+            $this->position = null;
+            return;
+        }
+
         switch ($this->getLevel ()) {
             case self::STR_FIRST_POS :
                 $this->position = $this->getFirstAvailablePositionStrategy ();
@@ -136,7 +169,7 @@ class NextMoveProviderAI implements NextMoveProvider {
      * This is the strategy based on first available position on the map
      * @return MapCoordinate object
      */
-    private function getFirstAvailablePositionStrategy () {
+    private function getFirstAvailablePositionStrategy () : MapCoordinate {
         return current ($this->getMap ()->getAvailableMoves ());
     }
 }
