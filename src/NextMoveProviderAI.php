@@ -102,6 +102,14 @@ class NextMoveProviderAI implements NextMoveProvider {
      */
     private function getMap () : Map {
         return $this->map;
-    }  
+    }
+
+    /**
+     * @return string
+     */
+    private function getLevel () : string {
+        return $this->level;
+    }
 }
+
 
