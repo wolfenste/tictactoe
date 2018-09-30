@@ -129,6 +129,14 @@ class NextMoveProviderAI implements NextMoveProvider {
                 $this->position = $this->getImprovedStrategy ();
         }
     }
+
+    /**
+     * This is the strategy based on first available position on the map
+     * @return MapCoordinate object
+     */
+    private function getFirstAvailablePositionStrategy () {
+        return current ($this->getAvailableMoves ());
+    }
 }
 
 
