@@ -33,6 +33,20 @@ class NextMoveProviderAITest extends BaseClassTest {
 
     /**
      * @test
+     * @expectedException DomainException
+     * @expectedExceptionMessage Third parameter must match one of the STR_* class constants
+     */
+    public function ai_strategy_is_constructed_with_a_wrong_level () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAI (
+            new Mark (Mark::SYMBOL_X),
+            $map,
+            'something'
+        );
+    }
+
+    /**
+     * @test
      */
     public function ai_next_move_is_a_valid_mapcoordinate_object () {
         $map = new Map ($this->createEmptyTableSpec ());
