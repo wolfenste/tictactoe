@@ -58,6 +58,8 @@ class NextMoveProviderAI implements NextMoveProvider {
         $this->map = new MapAI ($map->getMarks ());
         $this->level = self::STR_FIRST_POS; // !! This must be changed according to 
             // player's option
+        $this->setPosition ();
+
     }
 
     /**
@@ -135,7 +137,7 @@ class NextMoveProviderAI implements NextMoveProvider {
      * @return MapCoordinate object
      */
     private function getFirstAvailablePositionStrategy () {
-        return current ($this->getAvailableMoves ());
+        return current ($this->getMap ()->getAvailableMoves ());
     }
 }
 
