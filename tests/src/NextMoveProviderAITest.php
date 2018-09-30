@@ -45,4 +45,18 @@ class NextMoveProviderAITest extends BaseClassTest {
 
         $this->assertTrue ($strategy->getNextMove () instanceof MapCoordinate);
     }
+
+    /**
+     * @test
+     */
+    public function the_player_having_this_strategy_waits_this_round () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAI (
+            new Mark (Mark::SYMBOL_X),
+            $map,
+            (NextMoveProviderAI::class)::STR_FIRST_POS
+        );
+
+        $this->assertNull ($strategy->getNextMove ());
+    }
 }
