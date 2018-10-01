@@ -170,7 +170,7 @@ class NextMoveProviderAI implements NextMoveProvider {
      * @return MapCoordinate object
      */
     private function getFirstAvailablePositionStrategy () : MapCoordinate {
-        return current ($this->getMap ()->getAvailableMoves ());
+        return current ($this->getAvailableMoves ());
     }
 
     /** 
