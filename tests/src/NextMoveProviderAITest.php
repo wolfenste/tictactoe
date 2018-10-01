@@ -73,4 +73,19 @@ class NextMoveProviderAITest extends BaseClassTest {
 
         $this->assertNull ($strategy->getNextMove ());
     }
+
+    /**
+     * @test
+     */
+    public function ai_next_move_using_random_based_strategy_is_a_valid_mapcoordinate_object () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAI (
+            new Mark (Mark::SYMBOL_X),
+            $map,
+            (NextMoveProviderAI::class)::STR_RANDOM_POS,
+            false
+        );
+
+        $this->assertTrue ($strategy->getNextMove () instanceof MapCoordinate);
+    }
 }
