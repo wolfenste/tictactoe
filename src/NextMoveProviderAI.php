@@ -172,6 +172,21 @@ class NextMoveProviderAI implements NextMoveProvider {
     private function getFirstAvailablePositionStrategy () : MapCoordinate {
         return current ($this->getMap ()->getAvailableMoves ());
     }
+
+    /** 
+     * @return array containing available moves as MapCoordinate objects
+     */
+    private function getAvailableMoves () : array {
+        return $this->getMap ()->getAvailableMoves (); 
+    }   
+
+    /** 
+     * @return MapCoordinate object
+     */
+    private function getRandomBasedStrategy () : MapCoordinate {
+        $availableMoves = $this->getAvailableMoves (); 
+        return $availableMoves [array_rand ($availableMoves, 1)];
+    } 
 }
 
 
