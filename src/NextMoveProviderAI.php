@@ -79,7 +79,7 @@ abstract class NextMoveProviderAI implements NextMoveProvider {
     /**
      * @return array containing available moves as MapCoordinate objects
      */
-    private function getAvailableMoves () : array {
+    protected function getAvailableMoves () : array {
         return $this->getMap ()->getAvailableMoves ();
     }
 }

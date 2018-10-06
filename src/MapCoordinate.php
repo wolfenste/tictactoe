@@ -44,5 +44,18 @@ class MapCoordinate {
     public function getCoordinateY () {
         return $this->coordinate_y;
     }
+
+    /**
+     * @return bool, true if the given object equals this object
+     */
+    public function equal (MapCoordinate $mapCoordinate) : bool {
+        if ($this->getCoordinateX () === $mapCoordinate->getCoordinateX () &&
+            $this->getCoordinateY () === $mapCoordinate->getCoordinateY ()) {
+
+            return true;
+        }
+
+        return false;
+    }
 }
 
