@@ -3,32 +3,7 @@
 declare (strict_types = 1);
 namespace TicTacToe;
 
-class NextMoveProviderAI implements NextMoveProvider {
-    /** 
-     * @const AI chooses the first available position
-     */
-    const STR_FIRST_POS = 'str_first_pos';
-
-    /** 
-     * @const AI chooses a random position
-     */
-    const STR_RANDOM_POS = 'str_random_pos';
-
-    /** 
-     * @const AI's improved strategy
-     */
-    const STR_IMPROVED_POS = 'str_improved_pos';
-
-    /**
-     * @var string, will be initialized with one of the three difficulty constants
-     */
-    private $level;
-
-    /**
-     * @var MapCoordinate object
-     */
-    private $position;
-
+abstract class NextMoveProviderAI implements NextMoveProvider {
     /** 
      * @var Mark object
      */
@@ -43,6 +18,7 @@ class NextMoveProviderAI implements NextMoveProvider {
      * @var Map object, implements ReadOnlyMap interface
      */
     private $map;
+
     /**
      * Class constructor
      * @param Mark object
@@ -56,18 +32,12 @@ class NextMoveProviderAI implements NextMoveProvider {
         $this->setMyMark ($mark);
         $this->setOppMark ();
         $this->map = new MapAI ($map->getMarks ());
-        $this->level = self::STR_FIRST_POS; // !! This must be changed according to 
-            // player's option
-        $this->setPosition ();
-
     }
 
     /**
      * @return MapCoordinate object or null
      */
-    public function getNextMove () {
-        return $this->position;
-    }
+    abstract public function getNextMove ();
 
     /**
      * @param Mark object
@@ -107,38 +77,10 @@ class NextMoveProviderAI implements NextMoveProvider {
     }
 
     /**
-     * @return string
+     * @return array containing available moves as MapCoordinate objects
      */
-    private function getLevel () : string {
-        return $this->level;
-    }
-
-    /**
-     * @return void
-     */
-    private function setPosition () : void {
-        switch ($this->getLevel ()) {
-            case self::STR_FIRST_POS :
-                $this->position = $this->getFirstAvailablePositionStrategy ();
-                break;
-            case self::STR_RANDOM_POS :
-                $this->position = $this->getRandomBasedStrategy ();
-                break;
-            case self::STR_IMPROVED_POS :
-                $this->position = $this->getImprovedStrategy ();
-                break;
-            default :
-                $this->position = $this->getImprovedStrategy ();
-        }
-    }
-
-    /**
-     * This is the strategy based on first available position on the map
-     * @return MapCoordinate object
-     */
-    private function getFirstAvailablePositionStrategy () {
-        return current ($this->getMap ()->getAvailableMoves ());
+    private function getAvailableMoves () : array {
+        return $this->getMap ()->getAvailableMoves ();
     }
 }
-
 
