@@ -24,6 +24,27 @@ class NextMoveProviderAIAdvancedTest extends BaseClassTest {
         );
 
         $this->assertTrue ($strategy->getNextMove () instanceof MapCoordinate);
-    }   
+    }
+
+   /**
+    * @test
+    */
+    public function ai_blocks_the_opponent_s_winning_move () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            0 => new Mark (Mark::SYMBOL_X),
+            1 => new Mark (Mark::SYMBOL_X),
+            3 => new Mark (Mark::SYMBOL_0),
+            4 => new Mark (Mark::SYMBOL_0),
+            5 => new Mark (Mark::SYMBOL_X),
+            6 => new Mark (Mark::SYMBOL_X),
+            7 => new Mark (Mark::SYMBOL_0)
+        )));
+        $strategy = new NextMoveProviderAIAdvanced (
+            new Mark (Mark::SYMBOL_0),
+            $map
+        );
+
+        $this->assertTrue ($strategy->getNextMove ()->equal (new MapCoordinate (1, 3)));
+    }
 }
 
