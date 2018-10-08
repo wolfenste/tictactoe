@@ -118,6 +118,11 @@ class NextMoveProviderAIAdvanced extends NextMoveProviderAI {
     private function getBestMove (
         int $level = self::LOOK_AHEAD_MOVES, 
         bool $myTurn = true) {
+        
+        // if the map is empty (i.e ai player moves first), the best move is in the center
+        if ($this->getMap ()->isEmpty ()) {
+            return array (1, new MapCoordinate (2, 2));
+        }
 
         $availableMoves = $this->getAvailableMoves ();
 
