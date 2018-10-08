@@ -65,14 +65,14 @@ abstract class NextMoveProviderAI implements NextMoveProvider {
     /** 
      * @return Mark
      */
-    private function getOppMark () : Mark {
+    protected function getOppMark () : Mark {
         return $this->oppMark;
     }   
 
     /** 
      * @return Map object
      */
-    private function getMap () : Map {
+    protected function getMap () : Map {
         return $this->map;
     }
 
