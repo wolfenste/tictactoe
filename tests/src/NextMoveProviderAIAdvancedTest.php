@@ -87,5 +87,18 @@ class NextMoveProviderAIAdvancedTest extends BaseClassTest {
 
         $this->assertTrue ($strategy->getNextMove ()->equal (new MapCoordinate (2, 3)));
     }
+
+   /**
+    * @test
+    */
+    public function empty_map_ai_moves_first () {
+        $map = new Map ($this->createEmptyTableSpec ());
+        $strategy = new NextMoveProviderAIAdvanced (
+            new Mark (Mark::SYMBOL_0),
+            $map
+        );
+
+        $this->assertTrue ($strategy->getNextMove ()->equal (new MapCoordinate (2, 2)));
+    }
 }
 
