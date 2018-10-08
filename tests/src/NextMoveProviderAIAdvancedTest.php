@@ -100,5 +100,32 @@ class NextMoveProviderAIAdvancedTest extends BaseClassTest {
 
         $this->assertTrue ($strategy->getNextMove ()->equal (new MapCoordinate (2, 2)));
     }
+
+   /**
+    * @test
+    */
+    public function ai_should_choose_one_of_the_corners () {
+        $map = new Map ($this->createEmptyTableSpec (array (
+            4 => new Mark (Mark::SYMBOL_X)
+        )));
+        $strategy = new NextMoveProviderAIAdvanced (
+            new Mark (Mark::SYMBOL_0),
+            $map
+        );
+        
+        $corner = false;
+        $nextMove = $strategy->getNextMove ();
+
+        if ($nextMove->equal (new MapCoordinate (1, 1)) ||
+            $nextMove->equal (new MapCoordinate (1, 3)) ||
+            $nextMove->equal (new MapCoordinate (3, 1)) ||
+            $nextMove->equal (new MapCoordinate (3, 3))) {
+
+            $corner = true;
+        }
+
+        $this->assertTrue ($corner);
+    }
+
 }
 
