@@ -118,13 +118,27 @@ class NextMoveProviderAIAdvanced extends NextMoveProviderAI {
     private function getBestMove (
         int $level = self::LOOK_AHEAD_MOVES, 
         bool $myTurn = true) {
-        
+
+        $availableMoves = $this->getAvailableMoves ();
+
         // if the map is empty (i.e ai player moves first), the best move is in the center
         if ($this->getMap ()->isEmpty ()) {
             return array (1, new MapCoordinate (2, 2));
         }
 
-        $availableMoves = $this->getAvailableMoves ();
+        // second move of the game and opponent occupied the center
+        if (count ($availableMoves) == 8 && 
+                   !$this->getMap ()->isMapAvailable (new MapCoordinate (2, 2))) {
+                   
+            $corners = array (
+                new MapCoordinate (1, 1),
+                new MapCoordinate (1, 3),
+                new MapCoordinate (3, 1),
+                new MapCoordinate (3, 3)
+            );
+
+            return array (-1, $corners [array_rand ($corners)]);
+        }
 
         // I will start with the minimum score and try to increase it.
         // The opponent starts with the maximum score and tries to decrease it.
